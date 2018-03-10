@@ -2,19 +2,21 @@ package dk.sdu.mmmi.cbse.enemysystem;
 
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
-import static dk.sdu.mmmi.cbse.common.data.GameKeys.LEFT;
-import static dk.sdu.mmmi.cbse.common.data.GameKeys.RIGHT;
-import static dk.sdu.mmmi.cbse.common.data.GameKeys.UP;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
+import dk.sdu.mmmi.cbse.common.services.IBulletService;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.util.SPILocator;
+import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 public class EnemyControlSystem implements IEntityProcessingService {
 
 	private Random random = new Random();
-	private float dtCounter = 0;
+	private float turnTimer = 0;
+	private float shootTimer = 0;
 
 	@Override
 	public void process(GameData gameData, World world) {
@@ -23,9 +25,10 @@ public class EnemyControlSystem implements IEntityProcessingService {
 			PositionPart positionPart = enemy.getPart(PositionPart.class);
 			MovingPart movingPart = enemy.getPart(MovingPart.class);
 
-			dtCounter += gameData.getDelta();
+			//Decides  where to turn
+			turnTimer += gameData.getDelta();
 
-			if (dtCounter >= 0.1) {
+			if (turnTimer >= 0.1) {
 				float direction = random.nextFloat();
 				if (direction < 0.3) {
 					movingPart.setLeft(true);
@@ -37,12 +40,19 @@ public class EnemyControlSystem implements IEntityProcessingService {
 				} else {
 					movingPart.setRight(false);
 				}
-				dtCounter -= 01;
+				turnTimer -= 0.1;
 			}
 			movingPart.setUp(true);
-
 			movingPart.process(gameData, enemy);
-			positionPart.process(gameData, enemy);
+
+			//Shoots automatically
+			shootTimer += gameData.getDelta();
+			if (shootTimer > 0.1) {
+				IBulletService b = getBulletService().get(0);
+				b.shoot(gameData, world, positionPart);
+
+				shootTimer -= 0.1;
+			}
 
 			updateShape(enemy);
 		}
@@ -70,6 +80,10 @@ public class EnemyControlSystem implements IEntityProcessingService {
 
 		entity.setShapeX(shapex);
 		entity.setShapeY(shapey);
+	}
+
+	private List<? extends IBulletService> getBulletService() {
+		return SPILocator.locateAll(IBulletService.class);
 	}
 
 }

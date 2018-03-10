@@ -27,11 +27,11 @@ public class EnemyPlugin implements IGamePluginService {
 		float y = gameData.getDisplayHeight() / 3;
 		float radians = 3.1415f / 2;
 
-		Entity Enemy = new Enemy();
-		Enemy.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
-		Enemy.add(new PositionPart(x, y, radians));
+		Entity enemy = new Enemy();
+		enemy.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
+		enemy.add(new PositionPart(x, y, radians));
 
-		return Enemy;
+		return enemy;
 	}
 
 	@Override

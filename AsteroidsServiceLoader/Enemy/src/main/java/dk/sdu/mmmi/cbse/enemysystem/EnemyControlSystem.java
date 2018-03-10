@@ -8,7 +8,6 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IBulletService;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -49,9 +48,14 @@ public class EnemyControlSystem implements IEntityProcessingService {
 			shootTimer += gameData.getDelta();
 			if (shootTimer > 0.1) {
 				IBulletService b = getBulletService().get(0);
-				b.shoot(gameData, world, positionPart);
+				//Creates PositionPart that has same values as the enemy's PositionPart
+				float x = positionPart.getX();
+				float y = positionPart.getY();
+				float radians = positionPart.getRadians();
+				
+				b.shoot(gameData, world, new PositionPart(x, y, radians));
 
-				shootTimer -= 0.1;
+				shootTimer -= 0.2;
 			}
 
 			updateShape(enemy);

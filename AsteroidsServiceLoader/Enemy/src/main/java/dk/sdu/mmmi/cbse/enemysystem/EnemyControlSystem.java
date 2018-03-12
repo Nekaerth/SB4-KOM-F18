@@ -20,14 +20,15 @@ public class EnemyControlSystem implements IEntityProcessingService {
 	@Override
 	public void process(GameData gameData, World world) {
 
-		for (Entity enemy : world.getEntities(Enemy.class)) {
+		for (Entity entity : world.getEntities(Enemy.class)) {
+			Enemy enemy = (Enemy) entity;
 			PositionPart positionPart = enemy.getPart(PositionPart.class);
 			MovingPart movingPart = enemy.getPart(MovingPart.class);
 
 			//Decides  where to turn
-			turnTimer += gameData.getDelta();
+			enemy.turnTimer += gameData.getDelta();
 
-			if (turnTimer >= 0.1) {
+			if (enemy.turnTimer >= 0.1) {
 				float direction = random.nextFloat();
 				if (direction < 0.3) {
 					movingPart.setLeft(true);
@@ -39,26 +40,32 @@ public class EnemyControlSystem implements IEntityProcessingService {
 				} else {
 					movingPart.setRight(false);
 				}
-				turnTimer -= 0.1;
+				enemy.turnTimer -= 0.1;
 			}
 			movingPart.setUp(true);
 			movingPart.process(gameData, enemy);
 
 			//Shoots automatically
-			shootTimer += gameData.getDelta();
-			if (shootTimer > 0.1) {
-				IBulletService b = getBulletService().get(0);
-				//Creates PositionPart that has same values as the enemy's PositionPart
-				float x = positionPart.getX();
-				float y = positionPart.getY();
-				float radians = positionPart.getRadians();
-				
-				b.shoot(gameData, world, new PositionPart(x, y, radians));
-
-				shootTimer -= 0.2;
-			}
+			shoot(gameData, world, enemy);
 
 			updateShape(enemy);
+		}
+	}
+
+	private void shoot(GameData gameData, World world, Enemy enemy) {
+		PositionPart positionPart = enemy.getPart(PositionPart.class);
+
+		enemy.shootTimer += gameData.getDelta();
+		if (enemy.shootTimer > 0.1) {
+			IBulletService b = getBulletService().get(0);
+			//Creates PositionPart that has same values as the enemy's PositionPart
+			float x = positionPart.getX();
+			float y = positionPart.getY();
+			float radians = positionPart.getRadians();
+
+			b.shoot(gameData, world, new PositionPart(x, y, radians));
+
+			enemy.shootTimer -= 0.2;
 		}
 	}
 

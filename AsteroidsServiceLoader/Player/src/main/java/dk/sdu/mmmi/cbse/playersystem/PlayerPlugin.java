@@ -33,6 +33,8 @@ public class PlayerPlugin implements IGamePluginService {
 		float radians = 3.1415f / 2;
 
 		Entity player = new Player();
+		player.setShapeX(new float[4]);
+		player.setShapeY(new float[4]);
 		player.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
 		player.add(new PositionPart(x, y, radians));
 

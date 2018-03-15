@@ -2,12 +2,8 @@ package dk.sdu.mmmi.cbse.main;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
@@ -21,10 +17,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class Game implements ApplicationListener {
-
-	private AssetManager manager;
-	private SpriteBatch batch;
-	private Sprite sprite;
 
 	private static OrthographicCamera cam;
 	private ShapeRenderer sr;
@@ -44,14 +36,6 @@ public class Game implements ApplicationListener {
 		cam.update();
 
 		sr = new ShapeRenderer();
-
-		manager = new AssetManager();
-		manager.load("E:/Media/Pictures/image1.png", Texture.class);
-
-		manager.finishLoading();
-
-		batch = new SpriteBatch();
-		sprite = new Sprite((Texture) manager.get("E:/Media/Pictures/image1.png"));
 
 		Gdx.input.setInputProcessor(
 						new GameInputProcessor(gameData)
@@ -87,11 +71,6 @@ public class Game implements ApplicationListener {
 	}
 
 	private void draw() {
-		batch.begin();
-		sprite.setSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-		sprite.draw(batch);
-		batch.end();
-
 		for (Entity entity : world.getEntities()) {
 
 			sr.setColor(1, 1, 1, 1);

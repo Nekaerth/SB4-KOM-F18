@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
@@ -71,23 +72,27 @@ public class Game implements ApplicationListener {
 	}
 
 	private void draw() {
+
+		sr.begin(ShapeRenderer.ShapeType.Line);
 		for (Entity entity : world.getEntities()) {
+			//Draws the entity using ShapePart if the entity has a ShapePart
+			ShapePart shapePart = entity.getPart(ShapePart.class);
+			if (shapePart == null) {
+				continue;
+			}
 
 			sr.setColor(1, 1, 1, 1);
 
-			sr.begin(ShapeRenderer.ShapeType.Line);
-
-			float[] shapex = entity.getShapeX();
-			float[] shapey = entity.getShapeY();
+			float[] shapex = shapePart.getShapeX();
+			float[] shapey = shapePart.getShapeY();
 
 			for (int i = 0, j = shapex.length - 1; i < shapex.length; j = i++) {
 
 				sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
 			}
-
-			sr.end();
-
 		}
+
+		sr.end();
 	}
 
 	@Override

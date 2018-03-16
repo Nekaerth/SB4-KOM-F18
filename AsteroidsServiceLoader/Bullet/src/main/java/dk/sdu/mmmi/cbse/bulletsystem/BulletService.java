@@ -4,6 +4,7 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
 import dk.sdu.mmmi.cbse.common.services.IBulletService;
 
 public class BulletService implements IBulletService {
@@ -18,10 +19,11 @@ public class BulletService implements IBulletService {
 	private Entity createBullet(PositionPart positionPart) {
 
 		Entity bullet = new Bullet();
-		bullet.setShapeX(new float[2]);
-		bullet.setShapeY(new float[2]);
+		float[] shapeX = new float[2];
+		float[] shapeY = new float[2];
 
 		bullet.add(new PositionPart(positionPart.getX(), positionPart.getY(), positionPart.getRadians()));
+		bullet.add(new ShapePart(shapeX, shapeY));
 
 		return bullet;
 	}

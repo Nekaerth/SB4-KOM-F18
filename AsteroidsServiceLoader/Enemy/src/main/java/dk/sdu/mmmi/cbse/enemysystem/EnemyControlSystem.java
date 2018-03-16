@@ -5,6 +5,7 @@ import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.TimerPart;
 import dk.sdu.mmmi.cbse.common.services.IBulletService;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
@@ -66,24 +67,25 @@ public class EnemyControlSystem implements IEntityProcessingService {
 	}
 
 	private void updateShape(Entity entity) {
-		float[] shapex = entity.getShapeX();
-		float[] shapey = entity.getShapeY();
+		ShapePart shapePart = entity.getPart(ShapePart.class);
+		float[] shapeX = shapePart.getShapeX();
+		float[] shapeY = shapePart.getShapeY();
 		PositionPart positionPart = entity.getPart(PositionPart.class);
 		float x = positionPart.getX();
 		float y = positionPart.getY();
 		float radians = positionPart.getRadians();
 
-		shapex[0] = (float) (x + Math.cos(radians) * 8);
-		shapey[0] = (float) (y + Math.sin(radians) * 8);
+		shapeX[0] = (float) (x + Math.cos(radians) * 8);
+		shapeY[0] = (float) (y + Math.sin(radians) * 8);
 
-		shapex[1] = (float) (x + Math.cos(radians - 4 * 3.1415f / 5) * 8);
-		shapey[1] = (float) (y + Math.sin(radians - 4 * 3.1415f / 5) * 8);
+		shapeX[1] = (float) (x + Math.cos(radians - 4 * 3.1415f / 5) * 8);
+		shapeY[1] = (float) (y + Math.sin(radians - 4 * 3.1415f / 5) * 8);
 
-		shapex[2] = (float) (x + Math.cos(radians + 3.1415f) * 5);
-		shapey[2] = (float) (y + Math.sin(radians + 3.1415f) * 5);
+		shapeX[2] = (float) (x + Math.cos(radians + 3.1415f) * 5);
+		shapeY[2] = (float) (y + Math.sin(radians + 3.1415f) * 5);
 
-		shapex[3] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
-		shapey[3] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
+		shapeX[3] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
+		shapeY[3] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
 	}
 
 	private IBulletService getBulletService() {

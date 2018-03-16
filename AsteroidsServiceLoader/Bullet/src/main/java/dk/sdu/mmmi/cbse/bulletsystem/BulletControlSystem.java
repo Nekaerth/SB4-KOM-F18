@@ -4,6 +4,7 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 
 public class BulletControlSystem implements IEntityProcessingService {
@@ -46,8 +47,9 @@ public class BulletControlSystem implements IEntityProcessingService {
 	}
 
 	private void updateDraw(Entity entity) {
-		float[] shapex = entity.getShapeX();
-		float[] shapey = entity.getShapeY();
+		ShapePart shapePart = entity.getPart(ShapePart.class);
+		float[] shapex = shapePart.getShapeX();
+		float[] shapey = shapePart.getShapeY();
 		PositionPart positionPart = entity.getPart(PositionPart.class);
 		float x = positionPart.getX();
 		float y = positionPart.getY();

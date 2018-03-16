@@ -5,6 +5,7 @@ import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 
 public class PlayerPlugin implements IGamePluginService {
@@ -32,11 +33,13 @@ public class PlayerPlugin implements IGamePluginService {
 		float y = gameData.getDisplayHeight() / 2;
 		float radians = 3.1415f / 2;
 
+		float[] shapeX = new float[4];
+		float[] shapeY = new float[4];
+
 		Entity player = new Player();
-		player.setShapeX(new float[4]);
-		player.setShapeY(new float[4]);
 		player.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
 		player.add(new PositionPart(x, y, radians));
+		player.add(new ShapePart(shapeX, shapeY));
 
 		return player;
 	}

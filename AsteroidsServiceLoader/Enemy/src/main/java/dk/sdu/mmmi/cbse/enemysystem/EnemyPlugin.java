@@ -5,6 +5,7 @@ import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.TimerPart;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 
@@ -31,13 +32,16 @@ public class EnemyPlugin implements IGamePluginService {
 		//float y = gameData.getDisplayHeight() / 3;
 		float radians = 3.1415f / 2;
 
-		Entity enemy = new Enemy();
-		enemy.setShapeX(new float[4]);
-		enemy.setShapeY(new float[4]);
-		enemy.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
-		enemy.add(new PositionPart(x, y, radians));
+		float[] shapeX = new float[4];
+		float[] shapeY = new float[4];
+
 		//Adds two timers for turning and shooting
 		float[] timers = new float[2];
+
+		Entity enemy = new Enemy();
+		enemy.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
+		enemy.add(new PositionPart(x, y, radians));
+		enemy.add(new ShapePart(shapeX, shapeY));
 		enemy.add(new TimerPart(timers));
 
 		return enemy;

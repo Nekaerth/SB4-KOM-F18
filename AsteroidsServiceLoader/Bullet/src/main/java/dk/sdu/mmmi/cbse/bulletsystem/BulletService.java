@@ -16,12 +16,12 @@ public class BulletService implements IBulletService {
 	}
 
 	private Entity createBullet(PositionPart positionPart) {
-		Entity bullet = new Bullet();
 
+		Entity bullet = new Bullet();
 		bullet.setShapeX(new float[2]);
 		bullet.setShapeY(new float[2]);
 
-		bullet.add(positionPart);
+		bullet.add(new PositionPart(positionPart.getX(), positionPart.getY(), positionPart.getRadians()));
 
 		return bullet;
 	}

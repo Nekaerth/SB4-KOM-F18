@@ -5,7 +5,6 @@ import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import java.util.List;
 
 public class BulletControlSystem implements IEntityProcessingService {
 
@@ -15,10 +14,7 @@ public class BulletControlSystem implements IEntityProcessingService {
 	public void process(GameData gameData, World world) {
 		float dt = gameData.getDelta();
 
-		List<Entity> bullets = world.getEntities(Bullet.class);
-		System.out.println("Bullet amount: " + bullets.size());
-
-		for (Entity bullet : bullets) {
+		for (Entity bullet : world.getEntities(Bullet.class)) {
 			PositionPart positionPart = bullet.getPart(PositionPart.class);
 
 			float x = positionPart.getX();
@@ -60,9 +56,6 @@ public class BulletControlSystem implements IEntityProcessingService {
 		shapex[1] = x + 1;
 		shapey[0] = y;
 		shapey[1] = y;
-
-		entity.setShapeX(shapex);
-		entity.setShapeY(shapey);
 	}
 
 }

@@ -10,8 +10,8 @@ public class Entity implements Serializable {
 
 	private final UUID ID = UUID.randomUUID();
 
-	private float[] shapeX = new float[4];
-	private float[] shapeY = new float[4];
+	private float[] shapeX;
+	private float[] shapeY;
 	private float radius;
 	private Map<Class, EntityPart> parts;
 

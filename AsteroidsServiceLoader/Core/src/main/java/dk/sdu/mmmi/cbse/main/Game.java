@@ -46,12 +46,12 @@ public class Game implements ApplicationListener {
 		sr = new ShapeRenderer();
 
 		manager = new AssetManager();
-		manager.load("E:/Media/Pictures/image1.png", Texture.class);
+		manager.load("D:/Documents/GitHub/SB4-KOM-F18/AsteroidsServiceLoader/Core/src/main/java/dk/sdu/mmmi/cbse/main/dannebrog.jpg", Texture.class);
 
 		manager.finishLoading();
 
 		batch = new SpriteBatch();
-		sprite = new Sprite((Texture) manager.get("E:/Media/Pictures/image1.png"));
+		sprite = new Sprite((Texture) manager.get("D:/Documents/GitHub/SB4-KOM-F18/AsteroidsServiceLoader/Core/src/main/java/dk/sdu/mmmi/cbse/main/dannebrog.jpg"));
 
 		Gdx.input.setInputProcessor(
 						new GameInputProcessor(gameData)

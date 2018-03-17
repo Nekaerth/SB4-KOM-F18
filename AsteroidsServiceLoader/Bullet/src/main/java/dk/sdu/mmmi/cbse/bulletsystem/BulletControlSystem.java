@@ -3,8 +3,8 @@ package dk.sdu.mmmi.cbse.bulletsystem;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
-import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 
 public class BulletControlSystem implements IEntityProcessingService {
@@ -47,17 +47,13 @@ public class BulletControlSystem implements IEntityProcessingService {
 	}
 
 	private void updateDraw(Entity entity) {
-		ShapePart shapePart = entity.getPart(ShapePart.class);
-		float[] shapex = shapePart.getShapeX();
-		float[] shapey = shapePart.getShapeY();
 		PositionPart positionPart = entity.getPart(PositionPart.class);
 		float x = positionPart.getX();
 		float y = positionPart.getY();
 
-		shapex[0] = x;
-		shapex[1] = x + 1;
-		shapey[0] = y;
-		shapey[1] = y;
+		PointShapePart pointPart = entity.getPart(PointShapePart.class);
+		pointPart.setX(x);
+		pointPart.setY(y);
 	}
 
 }

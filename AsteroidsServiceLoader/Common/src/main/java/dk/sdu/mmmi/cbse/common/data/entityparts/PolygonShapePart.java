@@ -3,12 +3,12 @@ package dk.sdu.mmmi.cbse.common.data.entityparts;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 
-public class ShapePart implements EntityPart {
+public class PolygonShapePart implements EntityPart {
 
 	private float[] shapeX;
 	private float[] shapeY;
 
-	public ShapePart(float[] shapeX, float[] shapeY) {
+	public PolygonShapePart(float[] shapeX, float[] shapeY) {
 		this.shapeX = shapeX;
 		this.shapeY = shapeY;
 	}

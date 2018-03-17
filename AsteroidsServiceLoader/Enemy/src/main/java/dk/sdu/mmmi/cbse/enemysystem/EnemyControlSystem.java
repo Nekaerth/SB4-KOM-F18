@@ -5,7 +5,7 @@ import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
-import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.TimerPart;
 import dk.sdu.mmmi.cbse.common.services.IBulletService;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
@@ -67,9 +67,9 @@ public class EnemyControlSystem implements IEntityProcessingService {
 	}
 
 	private void updateShape(Entity entity) {
-		ShapePart shapePart = entity.getPart(ShapePart.class);
-		float[] shapeX = shapePart.getShapeX();
-		float[] shapeY = shapePart.getShapeY();
+		PolygonShapePart polygonPart = entity.getPart(PolygonShapePart.class);
+		float[] shapeX = polygonPart.getShapeX();
+		float[] shapeY = polygonPart.getShapeY();
 		PositionPart positionPart = entity.getPart(PositionPart.class);
 		float x = positionPart.getX();
 		float y = positionPart.getY();

@@ -5,7 +5,7 @@ import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
-import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.TimerPart;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 
@@ -41,7 +41,7 @@ public class EnemyPlugin implements IGamePluginService {
 		Entity enemy = new Enemy();
 		enemy.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
 		enemy.add(new PositionPart(x, y, radians));
-		enemy.add(new ShapePart(shapeX, shapeY));
+		enemy.add(new PolygonShapePart(shapeX, shapeY));
 		enemy.add(new TimerPart(timers));
 
 		return enemy;

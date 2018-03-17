@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
-import dk.sdu.mmmi.cbse.common.data.entityparts.ShapePart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
@@ -74,22 +75,26 @@ public class Game implements ApplicationListener {
 	private void draw() {
 
 		sr.begin(ShapeRenderer.ShapeType.Line);
+		sr.setColor(1, 1, 1, 1);
 		for (Entity entity : world.getEntities()) {
-			//Draws the entity using ShapePart if the entity has a ShapePart
-			ShapePart shapePart = entity.getPart(ShapePart.class);
-			if (shapePart == null) {
-				continue;
+			//Draws polygon from polygon 
+			PolygonShapePart polygonShape = entity.getPart(PolygonShapePart.class);
+			if (polygonShape != null) {
+
+				float[] shapex = polygonShape.getShapeX();
+				float[] shapey = polygonShape.getShapeY();
+
+				for (int i = 0, j = shapex.length - 1; i < shapex.length; j = i++) {
+					sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
+				}
 			}
 
-			sr.setColor(1, 1, 1, 1);
-
-			float[] shapex = shapePart.getShapeX();
-			float[] shapey = shapePart.getShapeY();
-
-			for (int i = 0, j = shapex.length - 1; i < shapex.length; j = i++) {
-
-				sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
+			//Draws point
+			PointShapePart pointPart = entity.getPart(PointShapePart.class);
+			if (pointPart != null) {
+				sr.point(pointPart.getX(), pointPart.getY(), 0);
 			}
+
 		}
 
 		sr.end();

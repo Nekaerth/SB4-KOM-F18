@@ -73,7 +73,7 @@ public class EnemyControlSystem implements IEntityProcessingService {
 		float x = positionPart.getX();
 		float y = positionPart.getY();
 
-		shapeX[0] = x + 4;
+		shapeX[0] = x + 5;
 		shapeY[0] = y + 5;
 
 		shapeX[1] = x + 3;
@@ -82,26 +82,26 @@ public class EnemyControlSystem implements IEntityProcessingService {
 		shapeX[2] = x - 3;
 		shapeY[2] = y + 10;
 
-		shapeX[3] = x - 4;
+		shapeX[3] = x - 5;
 		shapeY[3] = y + 5;
 
-		shapeX[4] = x - 15;
-		shapeY[4] = y;
+		shapeX[4] = x - 14;
+		shapeY[4] = y + 1;
 
-		shapeX[5] = x - 4;
+		shapeX[5] = x - 5;
 		shapeY[5] = y - 5;
 
-		shapeX[6] = x + 4;
+		shapeX[6] = x + 5;
 		shapeY[6] = y - 5;
 
-		shapeX[7] = x + 15;
-		shapeY[7] = y;
+		shapeX[7] = x + 14;
+		shapeY[7] = y + 1;
 
-		shapeX[8] = x - 15;
-		shapeY[8] = y;
+		shapeX[8] = x - 14;
+		shapeY[8] = y + 1;
 
-		shapeX[9] = x + 15;
-		shapeY[9] = y;
+		shapeX[9] = x + 14;
+		shapeY[9] = y + 1;
 
 		shapeX[10] = x + 4;
 		shapeY[10] = y + 5;

@@ -7,6 +7,8 @@ public class PolygonShapePart implements EntityPart {
 
 	private float[] shapeX;
 	private float[] shapeY;
+	private float[] length;
+	private float[] radians;
 
 	public PolygonShapePart(float[] shapeX, float[] shapeY) {
 		this.shapeX = shapeX;
@@ -34,4 +36,19 @@ public class PolygonShapePart implements EntityPart {
 		this.shapeY = shapeY;
 	}
 
+	public float[] getLength() {
+		return length;
+	}
+
+	public void setLength(float[] length) {
+		this.length = length;
+	}
+
+	public float[] getRadians() {
+		return radians;
+	}
+
+	public void setRadians(float[] radians) {
+		this.radians = radians;
+	}
 }

@@ -10,7 +10,6 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.TimerPart;
 import dk.sdu.mmmi.cbse.common.services.IBulletService;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
-import java.util.List;
 import java.util.Random;
 
 public class EnemyControlSystem implements IEntityProcessingService {
@@ -73,19 +72,42 @@ public class EnemyControlSystem implements IEntityProcessingService {
 		PositionPart positionPart = entity.getPart(PositionPart.class);
 		float x = positionPart.getX();
 		float y = positionPart.getY();
-		float radians = positionPart.getRadians();
 
-		shapeX[0] = (float) (x + Math.cos(radians) * 8);
-		shapeY[0] = (float) (y + Math.sin(radians) * 8);
+		shapeX[0] = x + 4;
+		shapeY[0] = y + 5;
 
-		shapeX[1] = (float) (x + Math.cos(radians - 4 * 3.1415f / 5) * 8);
-		shapeY[1] = (float) (y + Math.sin(radians - 4 * 3.1415f / 5) * 8);
+		shapeX[1] = x + 3;
+		shapeY[1] = y + 10;
 
-		shapeX[2] = (float) (x + Math.cos(radians + 3.1415f) * 5);
-		shapeY[2] = (float) (y + Math.sin(radians + 3.1415f) * 5);
+		shapeX[2] = x - 3;
+		shapeY[2] = y + 10;
 
-		shapeX[3] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
-		shapeY[3] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
+		shapeX[3] = x - 4;
+		shapeY[3] = y + 5;
+
+		shapeX[4] = x - 15;
+		shapeY[4] = y;
+
+		shapeX[5] = x - 4;
+		shapeY[5] = y - 5;
+
+		shapeX[6] = x + 4;
+		shapeY[6] = y - 5;
+
+		shapeX[7] = x + 15;
+		shapeY[7] = y;
+
+		shapeX[8] = x - 15;
+		shapeY[8] = y;
+
+		shapeX[9] = x + 15;
+		shapeY[9] = y;
+
+		shapeX[10] = x + 4;
+		shapeY[10] = y + 5;
+
+		shapeX[11] = x - 4;
+		shapeY[11] = y + 5;
 	}
 
 	private IBulletService getBulletService() {

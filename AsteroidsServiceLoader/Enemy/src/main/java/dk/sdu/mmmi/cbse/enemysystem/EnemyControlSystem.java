@@ -56,12 +56,13 @@ public class EnemyControlSystem implements IEntityProcessingService {
 		TimerPart timerPart = enemy.getPart(TimerPart.class);
 		float[] timers = timerPart.getTimers();
 
-		if (timers[1] > 0.1) {
+		float shootGap = 0.25f;
+		if (timers[1] > shootGap) {
 			IBulletService bulletService = getBulletService();
 			//Creates PositionPart that has same values as the enemy's PositionPart
 			bulletService.shoot(gameData, world, positionPart);
 
-			timers[1] -= 0.2;
+			timers[1] -= shootGap;
 		}
 	}
 

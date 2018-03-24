@@ -9,7 +9,7 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 
 public class BulletControlSystem implements IEntityProcessingService {
 
-	private float bulletSpeed = 200;
+	private float bulletSpeed = 150;
 
 	@Override
 	public void process(GameData gameData, World world) {

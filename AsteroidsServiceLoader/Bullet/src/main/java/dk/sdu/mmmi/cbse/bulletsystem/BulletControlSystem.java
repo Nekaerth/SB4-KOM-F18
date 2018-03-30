@@ -6,8 +6,9 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 
-public class BulletControlSystem implements IEntityProcessingService {
+public class BulletControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
 
 	private float bulletSpeed = 150;
 
@@ -30,7 +31,14 @@ public class BulletControlSystem implements IEntityProcessingService {
 				world.removeEntity(bullet);
 			}
 
-			updateDraw(bullet);
+			updateShape(bullet);
+		}
+	}
+
+	@Override
+	public void postPostProcess(GameData gameData, World world) {
+		for (Entity bullet : world.getEntities(Bullet.class)) {
+			updateShape(bullet);
 		}
 	}
 
@@ -46,7 +54,7 @@ public class BulletControlSystem implements IEntityProcessingService {
 		return false;
 	}
 
-	private void updateDraw(Entity entity) {
+	private void updateShape(Entity entity) {
 		PositionPart positionPart = entity.getPart(PositionPart.class);
 		float x = positionPart.getX();
 		float y = positionPart.getY();

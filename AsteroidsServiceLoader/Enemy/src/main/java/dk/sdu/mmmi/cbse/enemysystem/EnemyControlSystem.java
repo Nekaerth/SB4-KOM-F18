@@ -9,10 +9,11 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.TimerPart;
 import dk.sdu.mmmi.cbse.common.services.IBulletService;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
 import java.util.Random;
 
-public class EnemyControlSystem implements IEntityProcessingService {
+public class EnemyControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
 
 	private Random random = new Random();
 
@@ -24,7 +25,7 @@ public class EnemyControlSystem implements IEntityProcessingService {
 			TimerPart timerPart = enemy.getPart(TimerPart.class);
 			float[] timers = timerPart.getTimers();
 
-			//Decides  where to turn
+			//Decides where to turn
 			timerPart.process(gameData, enemy);
 
 			if (timers[0] >= 0.1) {
@@ -46,7 +47,12 @@ public class EnemyControlSystem implements IEntityProcessingService {
 
 			//Shoots automatically
 			shoot(gameData, world, enemy);
+		}
+	}
 
+	@Override
+	public void postPostProcess(GameData gameData, World world) {
+		for (Entity enemy : world.getEntities(Enemy.class)) {
 			updateShape(enemy);
 		}
 	}

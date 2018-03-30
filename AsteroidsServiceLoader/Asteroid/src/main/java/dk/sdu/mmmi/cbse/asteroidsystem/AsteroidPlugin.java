@@ -3,6 +3,7 @@ package dk.sdu.mmmi.cbse.asteroidsystem;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
@@ -24,21 +25,19 @@ public class AsteroidPlugin implements IGamePluginService {
 	}
 
 	private Entity createAsteroid(GameData gameData, int x, int y) {
-
 		Entity asteroid = new Asteroid();
 
 		//float x = gameData.getDisplayWidth() / 3;
 		//float y = gameData.getDisplayHeight() / 3;
 		float radians = 2 * 3.1415f * random.nextFloat();
-
 		asteroid.add(new PositionPart(x, y, radians));
 
 		int joints = random.nextInt(5) + 8;
-		
+
 		float[] shapeX = new float[joints];
 		float[] shapeY = new float[joints];
 		float[] length = new float[joints];
-		
+
 		for (int i = 0; i < joints; i++) {
 			length[i] = 10 + (10 * random.nextFloat());
 		}
@@ -47,6 +46,12 @@ public class AsteroidPlugin implements IGamePluginService {
 		polygonShapePart.setLength(length);
 
 		asteroid.add(polygonShapePart);
+
+		float width = 18;
+		float height = 18;
+		float offsetX = 0;
+		float offsetY = 0;
+		asteroid.add(new HitboxPart(width, height, offsetX, offsetY, x, y));
 
 		return asteroid;
 	}

@@ -6,11 +6,11 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
-import java.util.Random;
 
-public class AsteroidControlSystem implements IEntityProcessingService {
+public class AsteroidControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
 
 	@Override
 	public void process(GameData gameData, World world) {
@@ -41,10 +41,15 @@ public class AsteroidControlSystem implements IEntityProcessingService {
 			//Set position
 			pos.setX(x);
 			pos.setY(y);
-
-			updateShape(asteroid);
 		}
 
+	}
+
+	@Override
+	public void postPostProcess(GameData gameData, World world) {
+		for (Entity asteroid : world.getEntities(Asteroid.class)) {
+			updateShape(asteroid);
+		}
 	}
 
 	private void updateShape(Entity entity) {

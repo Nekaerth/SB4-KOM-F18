@@ -17,6 +17,7 @@
         <module>Enemy</module>
         <module>Bullet</module>
         <module>Asteroid</module>
+        <module>CollisionDetection</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        

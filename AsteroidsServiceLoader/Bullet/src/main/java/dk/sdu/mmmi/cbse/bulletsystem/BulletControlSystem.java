@@ -43,10 +43,6 @@ public class BulletControlSystem implements IEntityProcessingService, IPostPostE
 	public void postPostProcess(GameData gameData, World world) {
 		for (Entity bullet : world.getEntities(Bullet.class)) {
 			updateShape(bullet);
-			HitboxPart hitbox = bullet.getPart(HitboxPart.class);
-			if (hitbox.IsHit()) {
-				world.removeEntity(bullet);
-			}
 		}
 	}
 

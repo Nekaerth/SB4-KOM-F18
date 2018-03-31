@@ -2,12 +2,14 @@ package dk.sdu.mmmi.cbse.main;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
@@ -85,6 +87,39 @@ public class Game implements ApplicationListener {
 	private void draw() {
 
 		sr.begin(ShapeRenderer.ShapeType.Line);
+
+		for (Entity entity : world.getEntities()) {
+			HitboxPart hitbox = entity.getPart(HitboxPart.class);
+
+			if (hitbox.IsHit()) {
+				sr.setColor(Color.YELLOW);
+			} else {
+				sr.setColor(Color.RED);
+			}
+
+			float x = hitbox.getX();
+			float y = hitbox.getY();
+			float w = hitbox.getWidth() / 2;
+			float h = hitbox.getHeight() / 2;
+
+			float x1 = x + w;
+			float y1 = y + h;
+
+			float x2 = x - w;
+			float y2 = y + h;
+
+			float x3 = x - w;
+			float y3 = y - h;
+
+			float x4 = x + w;
+			float y4 = y - h;
+
+			sr.line(x1, y1, x2, y2);
+			sr.line(x2, y2, x3, y3);
+			sr.line(x3, y3, x4, y4);
+			sr.line(x4, y4, x1, y1);
+		}
+
 		sr.setColor(1, 1, 1, 1);
 		for (Entity entity : world.getEntities()) {
 			//Draws polygon from polygon 

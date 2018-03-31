@@ -11,30 +11,33 @@ public class CollisionDetectionControlSystem implements IPostEntityProcessingSer
 	@Override
 	public void postProcess(GameData gameData, World world) {
 		for (Entity entity : world.getEntities()) {
-			HitboxPart hitboxPart = entity.getPart(HitboxPart.class);
-			if (hitboxPart == null) {
+			HitboxPart hitbox = entity.getPart(HitboxPart.class);
+			if (hitbox == null) {
 				continue;
 			}
 
+			hitbox.setHit(false);
+
 			for (Entity otherEntity : world.getEntities()) {
-				HitboxPart otherHitboxPart = otherEntity.getPart(HitboxPart.class);
-				if (otherHitboxPart == null || hitboxPart == otherHitboxPart) {
+				HitboxPart hitbox2 = otherEntity.getPart(HitboxPart.class);
+				if (hitbox2 == null || hitbox == hitbox2) {
 					continue;
 				}
 
-				boolean isColliding = isColliding(hitboxPart, otherHitboxPart);
-				hitboxPart.setHit(isColliding);
-				otherHitboxPart.setHit(isColliding);
+				if (isColliding(hitbox, hitbox2)) {
+					hitbox.setHit(true);
+					hitbox2.setHit(true);
+				}
 			}
 		}
 	}
 
-	private boolean isColliding(HitboxPart box1, HitboxPart box2) {
-		float centerDistanceX = Math.abs(box1.getX() - box2.getX());
-		float centerDistanceY = Math.abs(box1.getY() - box2.getY());
+	private boolean isColliding(HitboxPart hitbox, HitboxPart hitbox2) {
+		float centerDistanceX = Math.abs(hitbox.getX() - hitbox2.getX());
+		float centerDistanceY = Math.abs(hitbox.getY() - hitbox2.getY());
 
-		float allowedDistanceX = (box1.getWidth() / 2) + (box2.getWidth() / 2);
-		float allowedDistanceY = (box1.getHeight() / 2) + (box2.getHeight() / 2);
+		float allowedDistanceX = (hitbox.getWidth() / 2) + (hitbox2.getWidth() / 2);
+		float allowedDistanceY = (hitbox.getHeight() / 2) + (hitbox2.getHeight() / 2);
 
 		return (allowedDistanceX > centerDistanceX && allowedDistanceY > centerDistanceY);
 	}

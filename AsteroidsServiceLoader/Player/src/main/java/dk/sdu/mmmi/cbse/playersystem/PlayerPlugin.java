@@ -42,8 +42,8 @@ public class PlayerPlugin implements IGamePluginService {
 		float[] shapeY = new float[4];
 		player.add(new PolygonShapePart(shapeX, shapeY));
 
-		float width = 14;
-		float height = 14;
+		float width = 30;
+		float height = 30;
 		float offsetX = 0;
 		float offsetY = 0;
 		player.add(new HitboxPart(width, height, offsetX, offsetY, x, y));

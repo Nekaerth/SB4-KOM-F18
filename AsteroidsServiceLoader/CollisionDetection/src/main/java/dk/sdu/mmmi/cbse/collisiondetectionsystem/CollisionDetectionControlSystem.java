@@ -8,6 +8,8 @@ import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
 public class CollisionDetectionControlSystem implements IPostEntityProcessingService {
 
+	private static int c;
+
 	@Override
 	public void postProcess(GameData gameData, World world) {
 		for (Entity entity : world.getEntities()) {
@@ -23,17 +25,13 @@ public class CollisionDetectionControlSystem implements IPostEntityProcessingSer
 				}
 
 				boolean isColliding = isColliding(hitboxPart, otherHitboxPart);
-				System.out.println(isColliding);
 				hitboxPart.setHit(isColliding);
 				otherHitboxPart.setHit(isColliding);
-
 			}
-
 		}
 	}
 
 	private boolean isColliding(HitboxPart box1, HitboxPart box2) {
-		System.out.println(box1.getX() + ", " + box1.getY());
 		float centerDistanceX = Math.abs(box1.getX() - box2.getX());
 		float centerDistanceY = Math.abs(box1.getY() - box2.getY());
 

@@ -47,8 +47,8 @@ public class AsteroidPlugin implements IGamePluginService {
 
 		asteroid.add(polygonShapePart);
 
-		float width = 18;
-		float height = 18;
+		float width = 40;
+		float height = 40;
 		float offsetX = 0;
 		float offsetY = 0;
 		asteroid.add(new HitboxPart(width, height, offsetX, offsetY, x, y));

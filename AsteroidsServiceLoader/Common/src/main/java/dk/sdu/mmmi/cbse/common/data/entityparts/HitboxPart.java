@@ -58,8 +58,8 @@ public class HitboxPart implements EntityPart {
 	 * @param hostY is the y coordinate of the host
 	 */
 	private void updatePosition(float hostX, float hostY) {
-		this.x = x + offsetX;
-		this.y = y + offsetY;
+		x = hostX + offsetX;
+		y = hostY + offsetY;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package dk.sdu.mmmi.cbse.asteroidsystem;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
@@ -14,7 +15,6 @@ public class AsteroidControlSystem implements IEntityProcessingService, IPostPos
 
 	@Override
 	public void process(GameData gameData, World world) {
-
 		for (Entity asteroid : world.getEntities(Asteroid.class)) {
 			//Calculate position
 			PositionPart pos = asteroid.getPart(PositionPart.class);
@@ -41,8 +41,11 @@ public class AsteroidControlSystem implements IEntityProcessingService, IPostPos
 			//Set position
 			pos.setX(x);
 			pos.setY(y);
-		}
 
+			//updates hitbox position after player position is updated
+			HitboxPart hitboxPart = asteroid.getPart(HitboxPart.class);
+			hitboxPart.process(gameData, asteroid);
+		}
 	}
 
 	@Override

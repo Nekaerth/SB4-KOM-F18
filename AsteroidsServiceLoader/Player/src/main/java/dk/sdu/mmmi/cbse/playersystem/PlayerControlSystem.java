@@ -5,6 +5,7 @@ import dk.sdu.mmmi.cbse.common.data.GameData;
 import static dk.sdu.mmmi.cbse.common.data.GameKeys.LEFT;
 import static dk.sdu.mmmi.cbse.common.data.GameKeys.RIGHT;
 import static dk.sdu.mmmi.cbse.common.data.GameKeys.UP;
+import static dk.sdu.mmmi.cbse.common.data.GameKeys.SPACE;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
@@ -12,7 +13,11 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.util.SPILocator;
+import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.ShootingPart;
+import dk.sdu.mmmi.cbse.commonbullet.services.IBulletService;
 import dk.sdu.mmmi.cbse.commonplayer.data.Player;
+import java.util.List;
 
 public class PlayerControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
 
@@ -30,7 +35,15 @@ public class PlayerControlSystem implements IEntityProcessingService, IPostPostE
 
 			movingPart.process(gameData, player);
 
-			//updates hitbox position after player position is updated
+			//Shoots if space key is down
+			if (gameData.getKeys().isDown(SPACE)) {
+				shoot(gameData, world, player);
+			} else {
+				ShootingPart s = player.getPart(ShootingPart.class);
+				s.resetTimer();
+			}
+
+			//Updates hitbox position after player position is updated
 			HitboxPart hitboxPart = player.getPart(HitboxPart.class);
 			hitboxPart.process(gameData, player);
 		}
@@ -63,6 +76,29 @@ public class PlayerControlSystem implements IEntityProcessingService, IPostPostE
 
 		shapeX[3] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
 		shapeY[3] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
+	}
+
+	private void shoot(GameData gameData, World world, Entity player) {
+		ShootingPart shooter = player.getPart(ShootingPart.class);
+		shooter.addShootTimer(gameData.getDelta());
+
+		if (shooter.getShootTimer() > shooter.getShootGap()) {
+			PositionPart pos = player.getPart(PositionPart.class);
+			IBulletService bulletService = getBulletService();
+			if (bulletService != null) {
+				bulletService.shoot(gameData, world, pos.getX(), pos.getY(), pos.getRadians(), player);
+			}
+			shooter.addShootTimer(-shooter.getShootGap());
+		}
+
+	}
+
+	private IBulletService getBulletService() {
+		List<IBulletService> bulletServices = SPILocator.locateAll(IBulletService.class);
+		if (bulletServices.isEmpty()) {
+			return null;
+		}
+		return bulletServices.get(0);
 	}
 
 }

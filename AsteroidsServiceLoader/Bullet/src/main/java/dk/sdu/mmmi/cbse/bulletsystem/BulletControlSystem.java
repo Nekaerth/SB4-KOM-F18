@@ -3,6 +3,7 @@ package dk.sdu.mmmi.cbse.bulletsystem;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
@@ -27,12 +28,14 @@ public class BulletControlSystem implements IEntityProcessingService, IPostPostE
 			positionPart.setX((float) (x + Math.cos(radians) * bulletSpeed * dt));
 			positionPart.setY((float) (y + Math.sin(radians) * bulletSpeed * dt));
 
+			//Updates hitbox position after player position is updated
+			HitboxPart hitboxPart = bullet.getPart(HitboxPart.class);
+			hitboxPart.process(gameData, bullet);
+
 			//Check if out of boundary
 			if (isOutOfWorld(gameData, bullet)) {
 				world.removeEntity(bullet);
 			}
-
-			updateShape(bullet);
 		}
 	}
 
@@ -40,6 +43,10 @@ public class BulletControlSystem implements IEntityProcessingService, IPostPostE
 	public void postPostProcess(GameData gameData, World world) {
 		for (Entity bullet : world.getEntities(Bullet.class)) {
 			updateShape(bullet);
+			HitboxPart hitbox = bullet.getPart(HitboxPart.class);
+			if (hitbox.IsHit()) {
+				world.removeEntity(bullet);
+			}
 		}
 	}
 

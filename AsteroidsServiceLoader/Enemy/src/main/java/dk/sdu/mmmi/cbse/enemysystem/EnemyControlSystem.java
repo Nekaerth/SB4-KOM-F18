@@ -3,12 +3,14 @@ package dk.sdu.mmmi.cbse.enemysystem;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
+import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.ShootingPart;
 import dk.sdu.mmmi.cbse.commonbullet.services.IBulletService;
 import java.util.List;
 import java.util.Random;
@@ -47,6 +49,10 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 
 			//Shoots automatically
 			shoot(gameData, world, enemy);
+
+			//Updates hitbox position after player position is updated
+			HitboxPart hitboxPart = enemy.getPart(HitboxPart.class);
+			hitboxPart.process(gameData, enemy);
 		}
 	}
 
@@ -54,24 +60,6 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 	public void postPostProcess(GameData gameData, World world) {
 		for (Entity enemy : world.getEntities(Enemy.class)) {
 			updateShape(enemy);
-		}
-	}
-
-	private void shoot(GameData gameData, World world, Enemy enemy) {
-		PositionPart pos = enemy.getPart(PositionPart.class);
-
-		enemy.addShootTimer(gameData.getDelta());
-
-		float shootTimeGap = 0.25f;
-		if (enemy.getShootTimer() > shootTimeGap) {
-			IBulletService bulletService = getBulletService();
-
-			//Creates PositionPart that has same values as the enemy's PositionPart
-			if (bulletService != null) {
-				bulletService.shoot(gameData, world, pos.getX(), pos.getY(), pos.getRadians(), enemy);
-			}
-
-			enemy.addShootTimer(-shootTimeGap);
 		}
 	}
 
@@ -118,6 +106,21 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 
 		shapeX[11] = x - 4;
 		shapeY[11] = y + 5;
+	}
+
+	private void shoot(GameData gameData, World world, Entity enemy) {
+		ShootingPart shooter = enemy.getPart(ShootingPart.class);
+		shooter.addShootTimer(gameData.getDelta());
+
+		if (shooter.getShootTimer() > shooter.getShootGap()) {
+			PositionPart pos = enemy.getPart(PositionPart.class);
+			IBulletService bulletService = getBulletService();
+			if (bulletService != null) {
+				bulletService.shoot(gameData, world, pos.getX(), pos.getY(), pos.getRadians(), enemy);
+			}
+			shooter.addShootTimer(-shooter.getShootGap());
+		}
+
 	}
 
 	private IBulletService getBulletService() {

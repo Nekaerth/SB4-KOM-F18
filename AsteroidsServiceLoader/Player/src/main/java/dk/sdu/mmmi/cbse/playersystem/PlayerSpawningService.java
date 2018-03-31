@@ -4,6 +4,7 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
+import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.ShootingPart;
 import dk.sdu.mmmi.cbse.commonplayer.data.Player;
 import dk.sdu.mmmi.cbse.commonplayer.services.IPlayerSpawningService;
 
@@ -30,6 +31,9 @@ public class PlayerSpawningService implements IPlayerSpawningService {
 		float offsetX = 0;
 		float offsetY = 0;
 		player.add(new HitboxPart(width, height, offsetX, offsetY, x, y));
+
+		float shootGap = 0.2f;
+		player.add(new ShootingPart(shootGap));
 
 		return player;
 	}

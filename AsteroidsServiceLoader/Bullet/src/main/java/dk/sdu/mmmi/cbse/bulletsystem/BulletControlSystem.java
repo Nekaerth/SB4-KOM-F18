@@ -7,6 +7,7 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
 
 public class BulletControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
 

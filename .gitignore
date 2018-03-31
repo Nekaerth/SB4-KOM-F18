@@ -11,3 +11,10 @@
 /NBRuntimeExample/application/target/
 /NBRuntimeExample/branding/target/
 /AsteroidsServiceLoader/CollisionDetection/target/
+/AsteroidsServiceLoader/CommonEntity/target/
+/AsteroidsServiceLoader/Spawner/target/
+/AsteroidsServiceLoader/CommonSpawner/target/
+/AsteroidsServiceLoader/CommonPlayer/target/
+/AsteroidsServiceLoader/CommonEnemy/target/
+/AsteroidsServiceLoader/CommonBullet/target/
+/AsteroidsServiceLoader/CommonAsteroid/target/

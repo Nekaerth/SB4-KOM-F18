@@ -1,7 +1,24 @@
 package dk.sdu.mmmi.cbse.enemysystem;
 
-import dk.sdu.mmmi.cbse.common.data.Entity;
+public class Enemy extends dk.sdu.mmmi.cbse.commonenemy.data.Enemy {
 
-public class Enemy extends Entity {
+	private float turnTimer;
+	private float shootTimer;
+
+	public float getTurnTimer() {
+		return turnTimer;
+	}
+
+	void addTurnTimer(float t) {
+		turnTimer += t;
+	}
+
+	public float getShootTimer() {
+		return shootTimer;
+	}
+
+	void addShootTimer(float t) {
+		shootTimer += t;
+	}
 
 }

@@ -12,6 +12,7 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.commonplayer.data.Player;
 
 public class PlayerControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
 

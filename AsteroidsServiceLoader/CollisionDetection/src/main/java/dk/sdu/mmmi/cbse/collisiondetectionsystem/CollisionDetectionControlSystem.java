@@ -8,8 +8,6 @@ import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
 public class CollisionDetectionControlSystem implements IPostEntityProcessingService {
 
-	private static int c;
-
 	@Override
 	public void postProcess(GameData gameData, World world) {
 		for (Entity entity : world.getEntities()) {

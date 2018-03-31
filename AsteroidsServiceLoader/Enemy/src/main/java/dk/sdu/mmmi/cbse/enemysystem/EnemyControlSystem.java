@@ -6,11 +6,11 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
-import dk.sdu.mmmi.cbse.common.data.entityparts.TimerPart;
-import dk.sdu.mmmi.cbse.common.services.IBulletService;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
+import dk.sdu.mmmi.cbse.commonbullet.services.IBulletService;
+import java.util.List;
 import java.util.Random;
 
 public class EnemyControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
@@ -20,15 +20,15 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 	@Override
 	public void process(GameData gameData, World world) {
 
-		for (Entity enemy : world.getEntities(Enemy.class)) {
+		for (Entity entity : world.getEntities(Enemy.class)) {
+			Enemy enemy = (Enemy) entity;
 			MovingPart movingPart = enemy.getPart(MovingPart.class);
-			TimerPart timerPart = enemy.getPart(TimerPart.class);
-			float[] timers = timerPart.getTimers();
 
 			//Decides where to turn
-			timerPart.process(gameData, enemy);
+			enemy.addTurnTimer(gameData.getDelta());
 
-			if (timers[0] >= 0.1) {
+			float turnTimeGap = 0.25f;
+			if (enemy.getTurnTimer() >= turnTimeGap) {
 				float direction = random.nextFloat();
 				if (direction < 0.3) {
 					movingPart.setLeft(true);
@@ -40,7 +40,7 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 				} else {
 					movingPart.setRight(false);
 				}
-				timers[0] -= 0.1;
+				enemy.addTurnTimer(-turnTimeGap);
 			}
 			movingPart.setUp(true);
 			movingPart.process(gameData, enemy);
@@ -57,18 +57,21 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 		}
 	}
 
-	private void shoot(GameData gameData, World world, Entity enemy) {
-		PositionPart positionPart = enemy.getPart(PositionPart.class);
-		TimerPart timerPart = enemy.getPart(TimerPart.class);
-		float[] timers = timerPart.getTimers();
+	private void shoot(GameData gameData, World world, Enemy enemy) {
+		PositionPart pos = enemy.getPart(PositionPart.class);
 
-		float shootGap = 0.25f;
-		if (timers[1] > shootGap) {
+		enemy.addShootTimer(gameData.getDelta());
+
+		float shootTimeGap = 0.25f;
+		if (enemy.getShootTimer() > shootTimeGap) {
 			IBulletService bulletService = getBulletService();
-			//Creates PositionPart that has same values as the enemy's PositionPart
-			bulletService.shoot(gameData, world, positionPart);
 
-			timers[1] -= shootGap;
+			//Creates PositionPart that has same values as the enemy's PositionPart
+			if (bulletService != null) {
+				bulletService.shoot(gameData, world, pos.getX(), pos.getY(), pos.getRadians(), enemy);
+			}
+
+			enemy.addShootTimer(-shootTimeGap);
 		}
 	}
 
@@ -118,7 +121,11 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 	}
 
 	private IBulletService getBulletService() {
-		return SPILocator.locateAll(IBulletService.class).get(0);
+		List<IBulletService> bulletServices = SPILocator.locateAll(IBulletService.class);
+		if (bulletServices.isEmpty()) {
+			return null;
+		}
+		return bulletServices.get(0);
 	}
 
 }

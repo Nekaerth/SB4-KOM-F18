@@ -5,26 +5,26 @@ import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
-import dk.sdu.mmmi.cbse.common.services.IBulletService;
+import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
+import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.OwnershipPart;
+import dk.sdu.mmmi.cbse.commonbullet.services.IBulletService;
 
 public class BulletService implements IBulletService {
 
 	@Override
-	public void shoot(GameData gameData, World world, PositionPart positionPart) {
+	public void shoot(GameData gameData, World world, float x, float y, float radians, Entity owner) {
 		//Creates bullet and adds to world
-		Entity bullet = createBullet(positionPart);
+		Entity bullet = createBullet(x, y, radians, owner);
 		world.addEntity(bullet);
 	}
 
-	private Entity createBullet(PositionPart positionPart) {
+	private Entity createBullet(float x, float y, float radians, Entity owner) {
 
 		Entity bullet = new Bullet();
-		float x = positionPart.getX();
-		float y = positionPart.getY();
-		float radians = positionPart.getRadians();
 
 		bullet.add(new PositionPart(x, y, radians));
 		bullet.add(new PointShapePart(x, y));
+		bullet.add(new OwnershipPart(owner));
 
 		return bullet;
 	}

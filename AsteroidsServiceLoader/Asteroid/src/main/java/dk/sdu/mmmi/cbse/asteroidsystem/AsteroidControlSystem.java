@@ -9,6 +9,9 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.commonasteroid.data.Asteroid;
+import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
+import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.OwnershipPart;
+import dk.sdu.mmmi.cbse.commonplayer.data.Player;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
@@ -52,7 +55,29 @@ public class AsteroidControlSystem implements IEntityProcessingService, IPostPos
 	@Override
 	public void postPostProcess(GameData gameData, World world) {
 		for (Entity asteroid : world.getEntities(Asteroid.class)) {
+			handleCollision(world, asteroid);
+		}
+		for (Entity asteroid : world.getEntities(Asteroid.class)) {
 			updateShape(asteroid);
+		}
+	}
+
+	private void handleCollision(World world, Entity asteroid) {
+		HitboxPart hitbox = asteroid.getPart(HitboxPart.class);
+		if (!hitbox.isHit()) {
+			return;
+		}
+
+		for (Entity entity : hitbox.getCollidingEntities()) {
+			Class type = entity.getClass();
+
+			if (type.equals(Bullet.class)) {
+				OwnershipPart ownerPart = entity.getPart(OwnershipPart.class);
+				Entity owner = ownerPart.getOwner();
+				if (owner.getClass().equals(Player.class)) {
+					world.removeEntity(asteroid);
+				}
+			}
 		}
 	}
 

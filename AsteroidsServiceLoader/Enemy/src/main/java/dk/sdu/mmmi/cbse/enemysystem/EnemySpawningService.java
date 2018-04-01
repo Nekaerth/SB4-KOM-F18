@@ -5,14 +5,22 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.ShootingPart;
-import dk.sdu.mmmi.cbse.commonenemy.services.IEnemySpawningService;
+import dk.sdu.mmmi.cbse.commonenemy.data.Enemy;
+import dk.sdu.mmmi.cbse.commonspawner.services.ISpawningService;
 
-public class EnemySpawningService implements IEnemySpawningService {
+public class EnemySpawningService implements ISpawningService<Enemy> {
 
 	@Override
-	public Enemy createEnemy(float x, float y, float radians) {
+	public Class<Enemy> getEntityType() {
+		return Enemy.class;
+	}
+
+	@Override
+	public Enemy createEntity(float x, float y, float radians) {
 		Enemy enemy = new Enemy();
 
+		enemy.add(new EnemyPart());
+		
 		enemy.add(new PositionPart(x, y, radians));
 
 		float deacceleration = 10;

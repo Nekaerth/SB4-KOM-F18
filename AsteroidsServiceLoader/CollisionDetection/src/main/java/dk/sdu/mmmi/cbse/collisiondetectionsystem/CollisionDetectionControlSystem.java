@@ -16,7 +16,7 @@ public class CollisionDetectionControlSystem implements IPostEntityProcessingSer
 				continue;
 			}
 
-			hitbox.setHit(false);
+			hitbox.clearCollidingEntities();
 
 			for (Entity otherEntity : world.getEntities()) {
 				HitboxPart hitbox2 = otherEntity.getPart(HitboxPart.class);
@@ -25,8 +25,7 @@ public class CollisionDetectionControlSystem implements IPostEntityProcessingSer
 				}
 
 				if (isColliding(hitbox, hitbox2)) {
-					hitbox.setHit(true);
-					hitbox2.setHit(true);
+					hitbox.addCollidingEntity(otherEntity);
 				}
 			}
 		}

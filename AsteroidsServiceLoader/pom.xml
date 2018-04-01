@@ -23,6 +23,7 @@
         <module>CommonEnemy</module>
         <module>CommonPlayer</module>
         <module>CommonAsteroid</module>
+        <module>CommonSpawner</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        

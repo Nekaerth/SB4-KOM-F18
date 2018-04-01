@@ -6,12 +6,17 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.ShootingPart;
 import dk.sdu.mmmi.cbse.commonplayer.data.Player;
-import dk.sdu.mmmi.cbse.commonplayer.services.IPlayerSpawningService;
+import dk.sdu.mmmi.cbse.commonspawner.services.ISpawningService;
 
-public class PlayerSpawningService implements IPlayerSpawningService {
+public class PlayerSpawningService implements ISpawningService<Player> {
 
 	@Override
-	public Player createPlayer(float x, float y, float radians) {
+	public Class<Player> getEntityType() {
+		return Player.class;
+	}
+
+	@Override
+	public Player createEntity(float x, float y, float radians) {
 		Player player = new Player();
 
 		player.add(new PositionPart(x, y, radians));

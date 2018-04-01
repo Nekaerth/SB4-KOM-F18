@@ -8,7 +8,11 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.commonasteroid.data.Asteroid;
 import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
+import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.OwnershipPart;
+import dk.sdu.mmmi.cbse.commonenemy.data.Enemy;
+import dk.sdu.mmmi.cbse.commonplayer.data.Player;
 
 public class BulletControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
 
@@ -39,13 +43,6 @@ public class BulletControlSystem implements IEntityProcessingService, IPostPostE
 		}
 	}
 
-	@Override
-	public void postPostProcess(GameData gameData, World world) {
-		for (Entity bullet : world.getEntities(Bullet.class)) {
-			updateShape(bullet);
-		}
-	}
-
 	private boolean isOutOfWorld(GameData gameData, Entity entity) {
 		int width = gameData.getDisplayWidth();
 		int height = gameData.getDisplayHeight();
@@ -56,6 +53,37 @@ public class BulletControlSystem implements IEntityProcessingService, IPostPostE
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void postPostProcess(GameData gameData, World world) {
+		for (Entity asteroid : world.getEntities(Bullet.class)) {
+			handleCollision(world, asteroid);
+		}
+		for (Entity bullet : world.getEntities(Bullet.class)) {
+			updateShape(bullet);
+		}
+	}
+
+	private void handleCollision(World world, Entity bullet) {
+		HitboxPart hitbox = bullet.getPart(HitboxPart.class);
+		if (!hitbox.isHit()) {
+			return;
+		}
+		OwnershipPart ownerPart = bullet.getPart(OwnershipPart.class);
+		Entity owner = ownerPart.getOwner();
+
+		for (Entity entity : hitbox.getCollidingEntities()) {
+			Class type = entity.getClass();
+
+			if (owner.getClass().equals(Player.class) && type.equals(Enemy.class)) {
+				world.removeEntity(bullet);
+			} else if (owner.getClass().equals(Player.class) && type.equals(Asteroid.class)) {
+				world.removeEntity(bullet);
+			} else if (owner.getClass().equals(Enemy.class) && type.equals(Player.class)) {
+				world.removeEntity(bullet);
+			}
+		}
 	}
 
 	private void updateShape(Entity entity) {

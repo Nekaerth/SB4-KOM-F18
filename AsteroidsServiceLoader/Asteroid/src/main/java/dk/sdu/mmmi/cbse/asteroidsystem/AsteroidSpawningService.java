@@ -4,15 +4,20 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.commonasteroid.data.Asteroid;
-import dk.sdu.mmmi.cbse.commonasteroid.services.IAsteroidSpawningService;
+import dk.sdu.mmmi.cbse.commonspawner.services.ISpawningService;
 import java.util.Random;
 
-public class AsteroidSpawningService implements IAsteroidSpawningService {
+public class AsteroidSpawningService implements ISpawningService<Asteroid> {
 
 	private Random random = new Random();
 
 	@Override
-	public Asteroid createAsteroid(float x, float y, float radians) {
+	public Class<Asteroid> getEntityType() {
+		return Asteroid.class;
+	}
+
+	@Override
+	public Asteroid createEntity(float x, float y, float radians) {
 		Asteroid asteroid = new Asteroid();
 
 		asteroid.add(new PositionPart(x, y, radians));

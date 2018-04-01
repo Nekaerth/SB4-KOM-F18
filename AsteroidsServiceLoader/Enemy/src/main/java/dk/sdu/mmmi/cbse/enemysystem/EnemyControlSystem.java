@@ -10,8 +10,12 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
+import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
+import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.OwnershipPart;
 import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.ShootingPart;
 import dk.sdu.mmmi.cbse.commonbullet.services.IBulletService;
+import dk.sdu.mmmi.cbse.commonenemy.data.Enemy;
+import dk.sdu.mmmi.cbse.commonplayer.data.Player;
 import java.util.List;
 import java.util.Random;
 
@@ -22,15 +26,14 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 	@Override
 	public void process(GameData gameData, World world) {
 
-		for (Entity entity : world.getEntities(Enemy.class)) {
-			Enemy enemy = (Enemy) entity;
+		for (Entity enemy : world.getEntities(Enemy.class)) {
 			MovingPart movingPart = enemy.getPart(MovingPart.class);
-
+			EnemyPart enemyPart = enemy.getPart(EnemyPart.class);
 			//Decides where to turn
-			enemy.addTurnTimer(gameData.getDelta());
+			enemyPart.changeTurnTime(gameData.getDelta());
 
 			float turnTimeGap = 0.25f;
-			if (enemy.getTurnTimer() >= turnTimeGap) {
+			if (enemyPart.getTurnTimer() >= turnTimeGap) {
 				float direction = random.nextFloat();
 				if (direction < 0.3) {
 					movingPart.setLeft(true);
@@ -42,7 +45,7 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 				} else {
 					movingPart.setRight(false);
 				}
-				enemy.addTurnTimer(-turnTimeGap);
+				enemyPart.changeTurnTime(-turnTimeGap);
 			}
 			movingPart.setUp(true);
 			movingPart.process(gameData, enemy);
@@ -56,10 +59,55 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 		}
 	}
 
+	private void shoot(GameData gameData, World world, Entity enemy) {
+		ShootingPart shooter = enemy.getPart(ShootingPart.class);
+		shooter.addShootTimer(gameData.getDelta());
+
+		if (shooter.getShootTimer() > shooter.getShootGap()) {
+			PositionPart pos = enemy.getPart(PositionPart.class);
+			IBulletService bulletService = getBulletService();
+			if (bulletService != null) {
+				bulletService.shoot(gameData, world, pos.getX(), pos.getY(), pos.getRadians(), enemy);
+			}
+			shooter.addShootTimer(-shooter.getShootGap());
+		}
+
+	}
+
+	private IBulletService getBulletService() {
+		List<IBulletService> bulletServices = SPILocator.locateAll(IBulletService.class);
+		if (bulletServices.isEmpty()) {
+			return null;
+		}
+		return bulletServices.get(0);
+	}
+
 	@Override
 	public void postPostProcess(GameData gameData, World world) {
 		for (Entity enemy : world.getEntities(Enemy.class)) {
+			handleCollision(world, enemy);
+		}
+		for (Entity enemy : world.getEntities(Enemy.class)) {
 			updateShape(enemy);
+		}
+	}
+
+	private void handleCollision(World world, Entity enemy) {
+		HitboxPart hitbox = enemy.getPart(HitboxPart.class);
+		if (!hitbox.isHit()) {
+			return;
+		}
+
+		for (Entity entity : hitbox.getCollidingEntities()) {
+			Class type = entity.getClass();
+
+			if (type.equals(Bullet.class)) {
+				OwnershipPart ownerPart = entity.getPart(OwnershipPart.class);
+				Entity owner = ownerPart.getOwner();
+				if (owner.getClass().equals(Player.class)) {
+					world.removeEntity(enemy);
+				}
+			}
 		}
 	}
 
@@ -106,29 +154,6 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 
 		shapeX[11] = x - 4;
 		shapeY[11] = y + 5;
-	}
-
-	private void shoot(GameData gameData, World world, Entity enemy) {
-		ShootingPart shooter = enemy.getPart(ShootingPart.class);
-		shooter.addShootTimer(gameData.getDelta());
-
-		if (shooter.getShootTimer() > shooter.getShootGap()) {
-			PositionPart pos = enemy.getPart(PositionPart.class);
-			IBulletService bulletService = getBulletService();
-			if (bulletService != null) {
-				bulletService.shoot(gameData, world, pos.getX(), pos.getY(), pos.getRadians(), enemy);
-			}
-			shooter.addShootTimer(-shooter.getShootGap());
-		}
-
-	}
-
-	private IBulletService getBulletService() {
-		List<IBulletService> bulletServices = SPILocator.locateAll(IBulletService.class);
-		if (bulletServices.isEmpty()) {
-			return null;
-		}
-		return bulletServices.get(0);
 	}
 
 }

@@ -20,7 +20,7 @@ public class AsteroidControlSystem implements IEntityProcessingService, IPostPos
 	@Override
 	public void process(GameData gameData, World world) {
 		for (Entity asteroid : world.getEntities(Asteroid.class)) {
-			//Calculate position
+			//Calculates position
 			PositionPart pos = asteroid.getPart(PositionPart.class);
 
 			float x = pos.getX();

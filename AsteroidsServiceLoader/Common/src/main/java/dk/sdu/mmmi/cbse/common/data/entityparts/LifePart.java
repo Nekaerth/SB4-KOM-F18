@@ -22,11 +22,11 @@ public class LifePart implements EntityPart {
 		this.life = life;
 	}
 
-	public boolean isIsHit() {
+	public boolean isHit() {
 		return isHit;
 	}
 
-	public void setIsHit(boolean isHit) {
+	public void setHit(boolean isHit) {
 		this.isHit = isHit;
 	}
 
@@ -46,4 +46,5 @@ public class LifePart implements EntityPart {
 	public void process(GameData gameData, Entity entity) {
 
 	}
+
 }

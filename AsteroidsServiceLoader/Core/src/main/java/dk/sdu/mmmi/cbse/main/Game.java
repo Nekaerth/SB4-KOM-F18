@@ -34,7 +34,6 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void create() {
-
 		gameData.setDisplayWidth(Gdx.graphics.getWidth());
 		gameData.setDisplayHeight(Gdx.graphics.getHeight());
 

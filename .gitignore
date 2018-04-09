@@ -18,3 +18,7 @@
 /AsteroidsServiceLoader/CommonEnemy/target/
 /AsteroidsServiceLoader/CommonBullet/target/
 /AsteroidsServiceLoader/CommonAsteroid/target/
+/TestPlatform/nbproject/private/
+/TestPlatform/build/
+/TestPlatform/SomeModule/build/
+/TestPlatform/SomeModule/nbproject/private/

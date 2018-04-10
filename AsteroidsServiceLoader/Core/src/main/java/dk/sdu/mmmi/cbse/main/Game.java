@@ -180,4 +180,5 @@ public class Game implements ApplicationListener {
 	private Collection<? extends IPostPostEntityProcessingService> getPostPostEntityProcessingServices() {
 		return SPILocator.locateAll(IPostPostEntityProcessingService.class);
 	}
+
 }

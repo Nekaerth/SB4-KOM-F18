@@ -39,7 +39,7 @@ public class BulletControlSystem implements IEntityProcessingService, IPostPostE
 			positionPart.setX((float) (x + Math.cos(radians) * bulletSpeed * dt));
 			positionPart.setY((float) (y + Math.sin(radians) * bulletSpeed * dt));
 
-			//Updates hitbox position after player position is updated
+			//Updates hitbox position after bullet position is updated
 			HitboxPart hitboxPart = bullet.getPart(HitboxPart.class);
 			hitboxPart.process(gameData, bullet);
 

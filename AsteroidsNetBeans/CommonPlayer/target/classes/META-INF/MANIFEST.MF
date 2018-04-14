@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/commonplayer/Bundle
  .properties
 OpenIDE-Module-Specification-Version: 1.0.1
-OpenIDE-Module-Implementation-Version: 1.0.1-20180412
-OpenIDE-Module-Build-Version: 201804121349
+OpenIDE-Module-Implementation-Version: 1.0.1-20180414
+OpenIDE-Module-Build-Version: 201804141839
 OpenIDE-Module: dk.sdu.mmmi.cbse.CommonPlayer
 OpenIDE-Module-Public-Packages: dk.sdu.mmmi.cbse.commonplayer.data.*
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1

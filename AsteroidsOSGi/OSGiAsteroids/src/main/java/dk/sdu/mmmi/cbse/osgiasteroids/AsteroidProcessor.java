@@ -1,64 +1,53 @@
 package dk.sdu.mmmi.cbse.osgiasteroids;
 
+import dk.sdu.mmmi.cbse.common.asteroids.Asteroid;
 import dk.sdu.mmmi.cbse.common.asteroids.IAsteroidSplitter;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 
 public class AsteroidProcessor implements IEntityProcessingService {
 
+    
     private IAsteroidSplitter asteroidSplitter;
 
     @Override
     public void process(GameData gameData, World world) {
 
-        Entity asteroid = world.getEntity(AsteroidPlugin.ID);
+       for (Entity asteroid : world.getEntities(Asteroid.class)) {
+            PositionPart positionPart = asteroid.getPart(PositionPart.class);
+            MovingPart movingPart = asteroid.getPart(MovingPart.class);
+            LifePart lifePart = asteroid.getPart(LifePart.class);
+            
+            
+            int numPoints = 12;
+            float speed = (float) Math.random() * 10f + 20f;
+            if (lifePart.getLife() == 1) {
+                numPoints = 8;
+                speed = (float) Math.random() * 30f + 70f;
+            } else if (lifePart.getLife()  == 2) {
+                numPoints = 10;
+                speed = (float) Math.random() * 10f + 50f;
+            }
+            movingPart.setSpeed(speed);
+            movingPart.setUp(true);
+           
+         
+            movingPart.process(gameData, asteroid);
+            positionPart.process(gameData, asteroid);
+            
 
-        float x = asteroid.getX();
-        float y = asteroid.getY();
-        float dx = asteroid.getDx();
-        float dy = asteroid.getDy();
-        float dt = gameData.getDelta();
-        float radians = asteroid.getRadians();
-
-        float speed = (float) Math.random() * 10f + 20f;
-        int numPoints = 12;
-        int width = 40;
-
-        // Set size based on life
-        int life = asteroid.getLife();
-        if (life == 1) {
-            numPoints = 8;
-            width = 12;
-            speed = (float) Math.random() * 30f + 70f;
-        } else if (life == 2) {
-            numPoints = 10;
-            width = 20;
-            speed = (float) Math.random() * 10f + 50f;
+            // Split event
+            if (lifePart.isHit()) {
+                asteroidSplitter.createSplitAsteroid(asteroid, world);
+            }
+            setShape(asteroid, numPoints);
         }
 
-        dx = (float) Math.cos(radians) * speed;
-        dy = (float) Math.sin(radians) * speed;
-
-        x = wrapScreenX(x, dx, dt, gameData);
-        y = wrapScreenY(y, dy, dt, gameData);
-
-        asteroid.setRadius(width / 2);
-        asteroid.setPosition(x, y);
-        asteroid.setDx(dx);
-        asteroid.setDy(dy);
-        asteroid.setRadians(radians);
-
-        setShape(asteroid, numPoints);
-
-        if (asteroid.isHit()) {
-            asteroid.setIsHit(false);
-            asteroid.setLife(asteroid.getLife() - 1);
-
-            Entity newAsteroid = asteroidSplitter.createSplitAsteroid(asteroid);
-            world.addEntity(newAsteroid);
-        }
     }
 
     /**
@@ -73,11 +62,12 @@ public class AsteroidProcessor implements IEntityProcessingService {
     }
 
     private void setShape(Entity entity, int numPoints) {
+        PositionPart position = entity.getPart(PositionPart.class);
         float[] shapex = new float[numPoints];
         float[] shapey = new float[numPoints];
-        float radians = entity.getRadians();
-        float x = entity.getX();
-        float y = entity.getY();
+        float radians = position.getRadians();
+        float x = position.getX();
+        float y = position.getY();
         float radius = entity.getRadius();
 
         float angle = 0;
@@ -92,24 +82,5 @@ public class AsteroidProcessor implements IEntityProcessingService {
         entity.setShapeY(shapey);
     }
 
-    private float wrapScreenY(float y, float dy, float dt, GameData gameData) {
-        y += dy * dt;
-        if (y > gameData.getDisplayHeight()) {
-            y = 0;
-        } else if (y < 0) {
-            y = gameData.getDisplayHeight();
-        }
-        return y;
-    }
-
-    private float wrapScreenX(float x, float dx, float dt, GameData gameData) {
-        x += dx * dt;
-        if (x > gameData.getDisplayWidth()) {
-            x = 0;
-        } else if (x < 0) {
-            x = gameData.getDisplayWidth();
-        }
-        return x;
-    }
 
 }

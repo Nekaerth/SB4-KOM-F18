@@ -28,3 +28,9 @@
 /AsteroidsNetBeans/Common/target/
 /AsteroidsNetBeans/TestModule/target/
 /AsteroidsNetBeans/SilentUpdate/target/
+/OSGiAgeCalculator/branding/target/
+/OSGiAgeCalculator/AgeCalculatorAPI/target/
+/OSGiAgeCalculator/AgeCalculatorImpl/target/
+/OSGiAgeCalculator/AgeCalculatorClient/target/
+/OSGiAgeCalculator/Launcher/target/
+/OSGiAgeCalculator/application/target/

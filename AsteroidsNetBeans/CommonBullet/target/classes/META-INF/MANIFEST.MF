@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/commonbullet/Bundle
  .properties
 OpenIDE-Module-Specification-Version: 1.0.1
-OpenIDE-Module-Implementation-Version: 1.0.1-20180414
-OpenIDE-Module-Build-Version: 201804141839
+OpenIDE-Module-Implementation-Version: 1.0.1-20180415
+OpenIDE-Module-Build-Version: 201804151810
 OpenIDE-Module: dk.sdu.mmmi.cbse.CommonBullet
 OpenIDE-Module-Public-Packages: dk.sdu.mmmi.cbse.commonbullet.data.*, 
  dk.sdu.mmmi.cbse.commonbullet.data.entityparts.*, dk.sdu.mmmi.cbse.co

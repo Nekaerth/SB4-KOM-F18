@@ -34,3 +34,17 @@
 /OSGiAgeCalculator/AgeCalculatorClient/target/
 /OSGiAgeCalculator/Launcher/target/
 /OSGiAgeCalculator/application/target/
+/AsteroidsOSGi/OSGiCommon/target/
+/AsteroidsOSGi/OSGiCommonBullet/target/
+/AsteroidsOSGi/OSGiLaser/target/
+/AsteroidsOSGi/OSGiCommonEnemy/target/
+/AsteroidsOSGi/OSGiEnemy/target/
+/AsteroidsOSGi/OSGiCommonAsteroids/target/
+/AsteroidsOSGi/OSGiAsteroids/target/
+/AsteroidsOSGi/OSGiAsteroidSplitter/target/
+/AsteroidsOSGi/OSGiLibGDX/target/
+/AsteroidsOSGi/OSGiCore/target/
+/AsteroidsOSGi/OSGiExtender/target/
+/AsteroidsOSGi/application/target/
+/AsteroidsOSGi/OSGiUpdater/target/
+/AsteroidsOSGi/branding/target/

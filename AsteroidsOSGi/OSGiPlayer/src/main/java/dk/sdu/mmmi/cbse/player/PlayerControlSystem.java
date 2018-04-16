@@ -27,7 +27,6 @@ public class PlayerControlSystem implements IEntityProcessingService, IPostPostE
 
 	@Override
 	public void process(GameData gameData, World world) {
-		System.out.println("player is connected");
 		for (Entity player : world.getEntities(Player.class)) {
 			//Updates player position based on keys down
 			MovingPart movingPart = player.getPart(MovingPart.class);

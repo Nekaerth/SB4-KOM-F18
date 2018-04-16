@@ -15,6 +15,7 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
+import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
@@ -81,17 +82,14 @@ public class Game implements ApplicationListener {
 
 	private void update() {
 		//Does all all the proccessing of entities in correct order
-		System.out.println("process: " + entityProcessorList.size());
 		for (IEntityProcessingService entityProcessorService : entityProcessorList) {
 			entityProcessorService.process(gameData, world);
 		}
 
-		System.out.println("post process: " + postEntityProcessorList.size());
 		for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
 			postEntityProcessorService.postProcess(gameData, world);
 		}
 
-		System.out.println("post post process: " + postPostEntityProcessorList.size());
 		for (IPostPostEntityProcessingService postPostEntityProcessorService : postPostEntityProcessorList) {
 			postPostEntityProcessorService.postPostProcess(gameData, world);
 		}
@@ -203,12 +201,12 @@ public class Game implements ApplicationListener {
 	}
 
 	public void addGamePluginService(IGamePluginService plugin) {
-		this.gamePluginList.add(plugin);
+		gamePluginList.add(plugin);
 		plugin.start(gameData, world);
 	}
 
 	public void removeGamePluginService(IGamePluginService plugin) {
-		this.gamePluginList.remove(plugin);
+		gamePluginList.remove(plugin);
 		plugin.stop(gameData, world);
 	}
 

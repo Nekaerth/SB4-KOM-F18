@@ -6,7 +6,7 @@
 		<provide interface="dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService"/>
 	</service>
 
-	<reference bind="setBulletService" cardinality="1..1"
+	<reference bind="setBulletService" cardinality="0..1"
 						 interface="dk.sdu.mmmi.cbse.commonbullet.services.IBulletService"
 						 name="IBulletService" policy="dynamic" unbind="removeBulletService"/>
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dk.sdu.mmmi.cbse</groupId>
@@ -65,18 +64,18 @@
         <module>application</module>
         <module>branding</module>
         <module>OSGiExtender</module>
-        <module>OSGiAsteroids</module>
-        <module>OSGiAsteroidSplitter</module>
-        <module>OSGiEnemy</module>
         <module>OSGiLibGDX</module>
+        <module>OSGiUpdater</module>
         <module>OSGiCore</module>
         <module>OSGiCommon</module>
-        <module>OSGiCommonAsteroids</module>
-        <module>OSGiCommonEnemy</module>
-        <module>OSGiCommonBullet</module>
-        <module>OSGiUpdater</module>
-        <module>OSGiLaser</module>
-    </modules>
+        <module>OSGiPlayer</module>
+    <module>OSGiCommonPlayer</module>
+    <module>OSGiCommonAsteroid</module>
+    <module>OSGiCommonEnemy</module>
+    <module>OSGiCommonBullet</module>
+    <module>OSGiCommonSpawner</module>
+    <module>OSGiSpawner</module>
+  </modules>
 
     <properties>
         <netbeans.version>RELEASE82</netbeans.version>

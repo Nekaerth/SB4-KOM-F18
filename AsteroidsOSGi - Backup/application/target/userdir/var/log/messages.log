@@ -1,0 +1,68 @@
+-------------------------------------------------------------------------------
+>Log Session: Sunday, April 15, 2018 11:55:31 PM CEST
+>System Info: 
+  Product Version         = NetBeans Platform 8.2 (Build 201609300101)
+  Operating System        = Windows 10 version 10.0 running on amd64
+  Java; VM; Vendor        = 1.8.0_121; Java HotSpot(TM) 64-Bit Server VM 25.121-b13; Oracle Corporation
+  Runtime                 = Java(TM) SE Runtime Environment 1.8.0_121-b13
+  Java Home               = D:\Program Files (x86)\Java\jdk1.8.0_121\jre
+  System Locale; Encoding = da_DK (asteroidsosgi); Cp1252
+  Home Directory          = C:\Users\Lasse
+  Current Directory       = D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi
+  User Directory          = D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\userdir
+  Cache Directory         = D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\userdir\var\cache
+  Installation            = D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\asteroidsosgi
+                            D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\bin
+                            D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\etc
+                            D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\extra
+                            D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform
+                            D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform
+  Boot & Ext. Classpath   = D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\resources.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\rt.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\sunrsasign.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\jsse.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\jce.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\charsets.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\jfr.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\classes;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\access-bridge-64.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\cldrdata.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\dnsns.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\jaccess.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\jfxrt.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\localedata.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\nashorn.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\sunec.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\sunjce_provider.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\sunmscapi.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\sunpkcs11.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\jre\lib\ext\zipfs.jar
+  Application Classpath   = D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\boot.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\org-openide-modules.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\org-openide-util-lookup.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\org-openide-util-ui.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\org-openide-util.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\boot_ja.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\boot_pt_BR.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\boot_ru.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\boot_zh_CN.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-modules_ja.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-modules_pt_BR.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-modules_ru.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-modules_zh_CN.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util-lookup_ja.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util-lookup_pt_BR.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util-lookup_ru.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util-lookup_zh_CN.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util-ui_ja.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util-ui_pt_BR.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util-ui_ru.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util-ui_zh_CN.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util_ja.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util_pt_BR.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util_ru.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\lib\locale\org-openide-util_zh_CN.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\lib\dt.jar;D:\Program Files (x86)\Java\jdk1.8.0_121\lib\tools.jar
+  Startup Classpath       = D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\asm-all-5.0.1.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\core-base.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\core.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\org-netbeans-libs-asm.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\org-openide-filesystems.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\core-base_ja.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\core-base_pt_BR.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\core-base_ru.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\core-base_zh_CN.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\core_ja.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\core_pt_BR.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\core_ru.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\core_zh_CN.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\org-netbeans-libs-asm_ja.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\org-netbeans-libs-asm_pt_BR.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\org-netbeans-libs-asm_ru.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\org-netbeans-libs-asm_zh_CN.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\org-openide-filesystems_ja.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\org-openide-filesystems_pt_BR.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\org-openide-filesystems_ru.jar;D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\platform\core\locale\org-openide-filesystems_zh_CN.jar
+-------------------------------------------------------------------------------
+INFO [org.netbeans.core.startup.NbEvents]: Module patch or custom extension: D:\Documents\GitHub\SB4-KOM-F18\AsteroidsOSGi\application\target\asteroidsosgi\..\..\..\OSGiExtender\target\classes
+INFO [org.netbeans.modules.netbinox]: Install area set to file:/D:/Documents/GitHub/SB4-KOM-F18/AsteroidsOSGi/application/target/asteroidsosgi/
+INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
+	org.openide.util.lookup [8.33.1 201609300101]
+	org.openide.util [9.7.1 201609300101]
+	org.openide.util.ui [9.6.1 201609300101]
+	org.openide.modules [7.48.1 201609300101]
+	org.openide.filesystems [9.10.1 201609300101]
+	org.netbeans.libs.asm [5.3.1 201609300101]
+	org.netbeans.bootstrap/1 [2.76.1 201609300101]
+	org.netbeans.core.startup.base [1.62.1.1 1 201609300101]
+	org.netbeans.core.startup/1 [1.62.1.1 201609300101]
+	org.netbeans.libs.osgi [1.21.1 201609300101]
+	org.netbeans.core.netigso [1.31.1 201609300101]
+	org.netbeans.modules.netbinox [1.41.1 201609300101]
+	org.eclipse.osgi.services [3.2.100 3.2.100.v20100503]
+	org.eclipse.equinox.util [1.0.500 1.0.500.v20130404-1337]
+	org.eclipse.equinox.ds [1.4.400 1.4.400.v20160226-2036]
+	dk.sdu.mmmi.cbse.OSGiUpdater [1.0.0 1.0.0.SNAPSHOT]
+	dk.sdu.mmmi.cbse.OSGiLibGDX [1.0.0 1.0.0.SNAPSHOT]
+	dk.sdu.mmmi.cbse.OSGiCommon [1.0.0 1.0.0.SNAPSHOT]
+	dk.sdu.mmmi.cbse.OSGiExtender [1.0 1.0-20180415 201804152155]
+	com.diffplug.osgi.extension.sun.reflect [0.0.0 0.0.0]
+	com.diffplug.osgi.extension.sun.misc [0.0.0 0.0.0]
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
+INFO [org.netbeans.core.netigso.Netigso]: bundle dk.sdu.mmmi.cbse.OSGiCore@1.0.0.SNAPSHOT resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle dk.sdu.mmmi.cbse.OSGiCore@1.0.0.SNAPSHOT started
+org.osgi.framework.BundleException: The bundle "dk.sdu.mmmi.cbse.OSGiEnemy_1.0.0.SNAPSHOT [20]" could not be resolved. Reason: Missing Constraint: Import-Package: dk.sdu.mmmi.cbse.common.bullet; version="[1.0.0,2.0.0)"
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.getResolverError(AbstractBundle.java:1332)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.getResolutionFailureException(AbstractBundle.java:1316)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:323)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:300)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:292)
+	at dk.sdu.mmmi.cbse.osgiupdater.Updater.start(Updater.java:118)
+	at dk.sdu.mmmi.cbse.osgiupdater.Updater.access$100(Updater.java:18)
+	at dk.sdu.mmmi.cbse.osgiupdater.Updater$1.created(Updater.java:41)
+	at dk.sdu.mmmi.cbse.osgiupdater.utilities.FileWatcher.poll(FileWatcher.java:95)
+	at dk.sdu.mmmi.cbse.osgiupdater.Updater$2.run(Updater.java:79)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)

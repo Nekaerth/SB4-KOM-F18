@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/spawner/Bundle.prop
+ erties
+OpenIDE-Module-Specification-Version: 1.0.1
+OpenIDE-Module-Implementation-Version: 1.0.1-20180410
+OpenIDE-Module-Build-Version: 201804100941
+OpenIDE-Module: dk.sdu.mmmi.cbse.Spawner
+OpenIDE-Module-Public-Packages: -
+OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
+OpenIDE-Module-Display-Category: dk.sdu.mmmi.cbse
+OpenIDE-Module-Name: Spawner
+OpenIDE-Module-Short-Description: <undefined>
+OpenIDE-Module-Long-Description: <undefined>
+OpenIDE-Module-Module-Dependencies: org.openide.util.lookup > 8.33.1, 
+ org.netbeans.api.annotations.common/1 > 1.27.1, dk.sdu.mmmi.cbse.Comm
+ on > 1.0.1, dk.sdu.mmmi.cbse.CommonPlayer > 1.0.1, dk.sdu.mmmi.cbse.C
+ ommonEnemy > 1.0.1, dk.sdu.mmmi.cbse.CommonAsteroid > 1.0.1, dk.sdu.m
+ mmi.cbse.CommonSpawner > 1.0.1
+

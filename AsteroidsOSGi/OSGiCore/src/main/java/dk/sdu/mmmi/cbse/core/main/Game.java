@@ -15,7 +15,6 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
-import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
@@ -82,6 +81,7 @@ public class Game implements ApplicationListener {
 
 	private void update() {
 		//Does all all the proccessing of entities in correct order
+		System.out.println("process: " + entityProcessorList.size());
 		for (IEntityProcessingService entityProcessorService : entityProcessorList) {
 			entityProcessorService.process(gameData, world);
 		}

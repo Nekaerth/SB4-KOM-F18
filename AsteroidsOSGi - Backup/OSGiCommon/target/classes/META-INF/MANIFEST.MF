@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1523829306598
-Build-Jdk: 1.8.0_121
+Bnd-LastModified: 1523980646263
+Build-Jdk: 1.8.0_161
 Built-By: Lasse
 Bundle-ManifestVersion: 2
 Bundle-Name: OSGiCommon

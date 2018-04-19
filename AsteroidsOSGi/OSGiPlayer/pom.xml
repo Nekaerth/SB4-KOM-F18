@@ -50,11 +50,6 @@
 			<artifactId>OSGiCommonBullet</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>OSGiCommonSpawner</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 	</dependencies>
 
 	<build>

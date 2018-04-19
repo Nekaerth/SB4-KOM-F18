@@ -18,17 +18,17 @@ import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 import java.util.Random;
 
-public class AsteroidControlSystem implements ISpawningService, IEntityProcessingService, IPostPostEntityProcessingService {
+public class AsteroidControlSystem implements ISpawningService<Asteroid>, IEntityProcessingService, IPostPostEntityProcessingService {
 
 	private Random random = new Random();
 
 	@Override
-	public Class getEntityType() {
+	public Class<Asteroid> getEntityType() {
 		return Asteroid.class;
 	}
 
 	@Override
-	public Entity createEntity(float x, float y, float radians) {
+	public Asteroid createEntity(float x, float y, float radians) {
 		return createEntity(x, y, radians, 2);
 	}
 

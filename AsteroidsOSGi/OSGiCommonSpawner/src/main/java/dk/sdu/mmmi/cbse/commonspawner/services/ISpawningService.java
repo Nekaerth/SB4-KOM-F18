@@ -2,10 +2,10 @@ package dk.sdu.mmmi.cbse.commonspawner.services;
 
 import dk.sdu.mmmi.cbse.common.data.Entity;
 
-public interface ISpawningService {
-	
-	public Class getEntityType();
+public interface ISpawningService<T extends Entity> {
 
-	public Entity createEntity(float x, float y, float radians);
+	public Class<T> getEntityType();
+
+	public T createEntity(float x, float y, float radians);
 
 }

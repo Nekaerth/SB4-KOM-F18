@@ -1,23 +1,34 @@
 package dk.sdu.mmmi.cbse.player;
 
-import dk.sdu.mmmi.cbse.common.data.Entity;
+import dk.sdu.mmmi.cbse.common.data.GameData;
+import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
+import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.ShootingPart;
 import dk.sdu.mmmi.cbse.commonplayer.data.Player;
-import dk.sdu.mmmi.cbse.commonspawner.services.ISpawningService;
+import org.openide.util.Exceptions;
 
-public class PlayerSpawningService implements ISpawningService {
+public class PlayerPlugin implements IGamePluginService {
 
 	@Override
-	public Class getEntityType() {
-		return Player.class;
+	public void start(GameData gameData, World world) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException ex) {
+			Exceptions.printStackTrace(ex);
+		}
+		world.addEntity(createPlayer(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2, 3.1415f * 0.5f));
 	}
 
 	@Override
-	public Entity createEntity(float x, float y, float radians) {
+	public void stop(GameData gameData, World world) {
+
+	}
+
+	private Player createPlayer(float x, float y, float radians) {
 		Player player = new Player();
 
 		player.add(new PositionPart(x, y, radians));

@@ -4,7 +4,6 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.commonasteroid.data.Asteroid;
 import dk.sdu.mmmi.cbse.commonenemy.data.Enemy;
 import dk.sdu.mmmi.cbse.commonplayer.data.Player;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class SpawnerControlSystem implements IEntityProcessingService, IGamePluginService {
+public class SpawnerControlSystem implements IEntityProcessingService {
 
 	private float nextSpawnX;
 	private float nextSpawnY;
@@ -32,29 +31,6 @@ public class SpawnerControlSystem implements IEntityProcessingService, IGamePlug
 
 	private List<ISpawningService> spawningServices = new CopyOnWriteArrayList<>();
 	private boolean playerHasSpawned = false;
-
-	@Override
-	public void start(GameData gameData, World world) {
-		//Should spawn the initial entities
-		ISpawningService playerSpawner = getSpawningService(Player.class);
-		if (playerSpawner != null) {
-			world.addEntity(playerSpawner.createEntity(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2, 3.1415f * 0.5f));
-			playerHasSpawned = true;
-		}
-
-		for (int i = 0; i < enemyAmount; i++) {
-			spawnEntityRandomly(gameData, world, Enemy.class);
-		}
-
-		for (int i = 0; i < asteroidAmount; i++) {
-			spawnEntityRandomly(gameData, world, Asteroid.class);
-		}
-	}
-
-	@Override
-	public void stop(GameData gameData, World world) {
-		//Removes all entities
-	}
 
 	@Override
 	public void process(GameData gameData, World world) {
@@ -132,9 +108,6 @@ public class SpawnerControlSystem implements IEntityProcessingService, IGamePlug
 	}
 
 	private <T extends Entity> ISpawningService getSpawningService(Class<T> type) {
-
-		System.out.println("spawners: " + spawningServices.size());
-
 		for (ISpawningService service : spawningServices) {
 			if (service.getEntityType().equals(type)) {
 				return service;

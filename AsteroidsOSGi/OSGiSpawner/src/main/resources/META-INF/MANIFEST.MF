@@ -1,4 +1,4 @@
 Bundle-SymbolicName: OSGiSpawner
 Bundle-ActivationPolicy: lazy
-Service-Component: META-INF/entityprocessor.xml
+Service-Component: META-INF/entityprocessor.xml, META-INF/gameplugin.xml
 

@@ -132,6 +132,9 @@ public class SpawnerControlSystem implements IEntityProcessingService, IGamePlug
 	}
 
 	private <T extends Entity> ISpawningService getSpawningService(Class<T> type) {
+
+		System.out.println("spawners: " + spawningServices.size());
+
 		for (ISpawningService service : spawningServices) {
 			if (service.getEntityType().equals(type)) {
 				return service;

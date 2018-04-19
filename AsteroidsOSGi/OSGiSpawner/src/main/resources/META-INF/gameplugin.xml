@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.mmmi.cbse.spawner.IGamePluginService">
+	<implementation class="dk.sdu.mmmi.cbse.spawner.SpawnerControlSystem"/>
+	<service>
+		<provide interface="dk.sdu.mmmi.cbse.common.services.IGamePluginService"/>
+	</service>
+
+	<reference bind="addSpawningService" cardinality="0..n"
+						 interface="dk.sdu.mmmi.cbse.commonspawner.services.ISpawningService"
+						 name="ISpawningService" policy="dynamic" unbind="removeSpawningService"/>
+
+</scr:component>

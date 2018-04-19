@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 OpenIDE-Module-Localizing-Bundle: dk/sdu/mmmi/cbse/spawner/Bundle.prop
  erties
 OpenIDE-Module-Specification-Version: 1.0.1
-OpenIDE-Module-Implementation-Version: 1.0.1-20180415
-OpenIDE-Module-Build-Version: 201804151810
+OpenIDE-Module-Implementation-Version: 1.0.1-20180419
+OpenIDE-Module-Build-Version: 201804190957
 OpenIDE-Module: dk.sdu.mmmi.cbse.Spawner
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1

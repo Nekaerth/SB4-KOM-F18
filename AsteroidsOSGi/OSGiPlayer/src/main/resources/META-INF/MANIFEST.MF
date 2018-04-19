@@ -1,4 +1,3 @@
 Bundle-SymbolicName: OSGiPlayer
 Bundle-ActivationPolicy: lazy
-Service-Component: META-INF/entityprocessor.xml, META-INF/spawningservice.xml
-
+Service-Component: META-INF/entityprocessor.xml, META-INF/postpostentityprocessor.xml, META-INF/spawner.xml

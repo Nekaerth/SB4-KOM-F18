@@ -81,7 +81,11 @@ public class Game implements ApplicationListener {
 
 	private void update() {
 		//Does all all the proccessing of entities in correct order
+		System.out.println("gamePlugin: " + gamePluginList.size());
 		System.out.println("process: " + entityProcessorList.size());
+		System.out.println("postProcess: " + postEntityProcessorList.size());
+		System.out.println("postPostProcess: " + postPostEntityProcessorList.size());
+		System.out.println("");
 		for (IEntityProcessingService entityProcessorService : entityProcessorList) {
 			entityProcessorService.process(gameData, world);
 		}

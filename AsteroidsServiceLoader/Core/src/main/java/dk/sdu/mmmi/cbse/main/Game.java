@@ -13,10 +13,10 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
+import dk.sdu.mmmi.cbse.common.services.IEntityCollisionDetectionService;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
-import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
 import dk.sdu.mmmi.cbse.managers.GameInputProcessor;
 import java.util.ArrayList;
@@ -70,17 +70,17 @@ public class Game implements ApplicationListener {
 	}
 
 	private void update() {
-		//Does all all the proccessing of entities in correct order
+		//Does all all the proccessing and collision detection of entities in correct order
 		for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
 			entityProcessorService.process(gameData, world);
 		}
 
-		for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
-			postEntityProcessorService.postProcess(gameData, world);
+		for (IEntityCollisionDetectionService entityCollisionDetectionService : getEntityCollisionDetectionServices()) {
+			entityCollisionDetectionService.collisionDetection(gameData, world);
 		}
 
-		for (IPostPostEntityProcessingService postPostEntityProcessorService : getPostPostEntityProcessingServices()) {
-			postPostEntityProcessorService.postPostProcess(gameData, world);
+		for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
+			postEntityProcessorService.postProcess(gameData, world);
 		}
 	}
 
@@ -173,12 +173,12 @@ public class Game implements ApplicationListener {
 		return SPILocator.locateAll(IEntityProcessingService.class);
 	}
 
-	private Collection<? extends IPostEntityProcessingService> getPostEntityProcessingServices() {
-		return SPILocator.locateAll(IPostEntityProcessingService.class);
+	private Collection<? extends IEntityCollisionDetectionService> getEntityCollisionDetectionServices() {
+		return SPILocator.locateAll(IEntityCollisionDetectionService.class);
 	}
 
-	private Collection<? extends IPostPostEntityProcessingService> getPostPostEntityProcessingServices() {
-		return SPILocator.locateAll(IPostPostEntityProcessingService.class);
+	private Collection<? extends IPostEntityProcessingService> getPostEntityProcessingServices() {
+		return SPILocator.locateAll(IPostEntityProcessingService.class);
 	}
 
 }

@@ -12,7 +12,7 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
 import dk.sdu.mmmi.cbse.commonasteroid.data.Asteroid;
 import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
@@ -23,7 +23,7 @@ import dk.sdu.mmmi.cbse.commonenemy.data.Enemy;
 import dk.sdu.mmmi.cbse.commonplayer.data.Player;
 import java.util.List;
 
-public class PlayerControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
+public class PlayerControlSystem implements IEntityProcessingService, IPostEntityProcessingService {
 
 	@Override
 	public void process(GameData gameData, World world) {
@@ -77,7 +77,7 @@ public class PlayerControlSystem implements IEntityProcessingService, IPostPostE
 	}
 
 	@Override
-	public void postPostProcess(GameData gameData, World world) {
+	public void postProcess(GameData gameData, World world) {
 		for (Entity player : world.getEntities(Player.class)) {
 			handleCollision(world, player);
 		}
@@ -85,7 +85,7 @@ public class PlayerControlSystem implements IEntityProcessingService, IPostPostE
 			updateShape(player);
 		}
 	}
-	
+
 	private void handleCollision(World world, Entity player) {
 		HitboxPart hitbox = player.getPart(HitboxPart.class);
 		if (!hitbox.isHit()) {
@@ -109,7 +109,7 @@ public class PlayerControlSystem implements IEntityProcessingService, IPostPostE
 			}
 		}
 	}
-	
+
 	private void updateShape(Entity entity) {
 		PolygonShapePart polygonPart = entity.getPart(PolygonShapePart.class);
 		float[] shapeX = polygonPart.getShapeX();

@@ -8,7 +8,7 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.util.SPILocator;
 import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
 import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.OwnershipPart;
@@ -19,7 +19,7 @@ import dk.sdu.mmmi.cbse.commonplayer.data.Player;
 import java.util.List;
 import java.util.Random;
 
-public class EnemyControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
+public class EnemyControlSystem implements IEntityProcessingService, IPostEntityProcessingService {
 
 	private Random random = new Random();
 
@@ -83,7 +83,7 @@ public class EnemyControlSystem implements IEntityProcessingService, IPostPostEn
 	}
 
 	@Override
-	public void postPostProcess(GameData gameData, World world) {
+	public void postProcess(GameData gameData, World world) {
 		for (Entity enemy : world.getEntities(Enemy.class)) {
 			handleCollision(world, enemy);
 		}

@@ -97,7 +97,6 @@
             <groupId>dk.sdu.mmmi.cbse</groupId>
             <artifactId>common</artifactId>
             <version>1.0.1-SNAPSHOT</version>
-            <type>jar</type>
         </dependency>
     </dependencies>      
     <build>

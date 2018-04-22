@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.cbse.commonasteroid.data.entityparts;
+package dk.sdu.mmmi.cbse.asteroidsystem;
 
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;

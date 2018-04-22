@@ -9,7 +9,6 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.commonasteroid.data.Asteroid;
-import dk.sdu.mmmi.cbse.commonasteroid.data.entityparts.AsteroidPart;
 import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
 import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.OwnershipPart;
 import dk.sdu.mmmi.cbse.commonplayer.data.Player;

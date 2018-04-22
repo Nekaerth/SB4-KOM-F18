@@ -12,7 +12,7 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.commonasteroid.data.Asteroid;
 import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
 import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.OwnershipPart;
@@ -27,9 +27,9 @@ import org.openide.util.lookup.ServiceProviders;
 @ServiceProviders(value = {
 	@ServiceProvider(service = IEntityProcessingService.class)
 	,
-	@ServiceProvider(service = IPostPostEntityProcessingService.class)
+	@ServiceProvider(service = IPostEntityProcessingService.class)
 })
-public class PlayerControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
+public class PlayerControlSystem implements IEntityProcessingService, IPostEntityProcessingService {
 
 	@Override
 	public void process(GameData gameData, World world) {
@@ -79,7 +79,7 @@ public class PlayerControlSystem implements IEntityProcessingService, IPostPostE
 	}
 
 	@Override
-	public void postPostProcess(GameData gameData, World world) {
+	public void postProcess(GameData gameData, World world) {
 		for (Entity player : world.getEntities(Player.class)) {
 			handleCollision(world, player);
 		}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Spawner">
-    <module_version install_time="1524131854027" last="true" origin="installer" specification_version="1.0.1">
+    <module_version install_time="1524417280841" last="true" origin="installer" specification_version="1.0.1">
         <file crc="187319987" name="config/Modules/dk-sdu-mmmi-cbse-Spawner.xml"/>
-        <file crc="3486850693" name="modules/dk-sdu-mmmi-cbse-Spawner.jar"/>
+        <file crc="2738372202" name="modules/dk-sdu-mmmi-cbse-Spawner.jar"/>
     </module_version>
 </module>

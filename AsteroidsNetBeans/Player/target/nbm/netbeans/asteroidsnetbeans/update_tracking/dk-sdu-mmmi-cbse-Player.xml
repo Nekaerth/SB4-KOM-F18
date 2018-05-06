@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.mmmi.cbse.Player">
-    <module_version install_time="1524417813752" last="true" origin="installer" specification_version="1.0.1">
+    <module_version install_time="1525540658857" last="true" origin="installer" specification_version="1.0.1">
         <file crc="477641821" name="config/Modules/dk-sdu-mmmi-cbse-Player.xml"/>
-        <file crc="974612189" name="modules/dk-sdu-mmmi-cbse-Player.jar"/>
+        <file crc="1105184655" name="modules/dk-sdu-mmmi-cbse-Player.jar"/>
     </module_version>
 </module>

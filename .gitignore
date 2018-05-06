@@ -56,3 +56,5 @@
 /AsteroidsOSGi/OSGiCommonSpawner/target/
 /AsteroidsOSGi/OSGiSpawner/target/
 /AsteroidsOSGi/OGSiAsteroid/target/
+/AsteroidsOSGi/OSGiBullet/target/
+/AsteroidsOSGi/OSGiCollisionDetection/target/

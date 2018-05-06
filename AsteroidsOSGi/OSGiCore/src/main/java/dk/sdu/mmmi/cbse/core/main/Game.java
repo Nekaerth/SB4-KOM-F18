@@ -15,9 +15,9 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
-import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
-import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IEntityCollisionDetectionService;
 import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.core.managers.GameInputProcessor;
 import java.util.List;
@@ -32,7 +32,7 @@ public class Game implements ApplicationListener {
 
 	private static List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
 	private static List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
-	private static List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
+	private static List<IEntityCollisionDetectionService> entityCollisionDetectorList = new CopyOnWriteArrayList<>();
 	private static List<IPostPostEntityProcessingService> postPostEntityProcessorList = new CopyOnWriteArrayList<>();
 
 	public Game() {
@@ -90,8 +90,8 @@ public class Game implements ApplicationListener {
 			entityProcessorService.process(gameData, world);
 		}
 
-		for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
-			postEntityProcessorService.postProcess(gameData, world);
+		for (IEntityCollisionDetectionService postEntityProcessorService : entityCollisionDetectorList) {
+			postEntityProcessorService.collisionDetection(gameData, world);
 		}
 
 		for (IPostPostEntityProcessingService postPostEntityProcessorService : postPostEntityProcessorList) {
@@ -188,20 +188,20 @@ public class Game implements ApplicationListener {
 		entityProcessorList.remove(eps);
 	}
 
-	public void addPostEntityProcessingService(IPostEntityProcessingService eps) {
-		postEntityProcessorList.add(eps);
+	public void addEntityCollisionDetectionService(IEntityCollisionDetectionService ecd) {
+		entityCollisionDetectorList.add(ecd);
 	}
 
-	public void removePostEntityProcessingService(IPostEntityProcessingService eps) {
-		postEntityProcessorList.remove(eps);
+	public void removeEntityCollisionDetectionService(IEntityCollisionDetectionService ecd) {
+		entityCollisionDetectorList.remove(ecd);
 	}
 
-	public void addPostPostEntityProcessingService(IPostPostEntityProcessingService eps) {
-		postPostEntityProcessorList.add(eps);
+	public void addPostPostEntityProcessingService(IPostPostEntityProcessingService peps) {
+		postPostEntityProcessorList.add(peps);
 	}
 
-	public void removePostPostEntityProcessingService(IPostPostEntityProcessingService eps) {
-		postPostEntityProcessorList.remove(eps);
+	public void removePostPostEntityProcessingService(IPostPostEntityProcessingService peps) {
+		postPostEntityProcessorList.remove(peps);
 	}
 
 	public void addGamePluginService(IGamePluginService plugin) {

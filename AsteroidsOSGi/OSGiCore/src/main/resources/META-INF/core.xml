@@ -2,9 +2,9 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.mmmi.cbse.core">
 	<implementation class="dk.sdu.mmmi.cbse.core.main.Game"/>
 
-	<reference bind="addPostEntityProcessingService" cardinality="0..n"
-						 interface="dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService"
-						 name="IPostEntityProcessingService" policy="dynamic" unbind="removePostEntityProcessingService"/>
+	<reference bind="addEntityCollisionDetectionService" cardinality="0..n"
+						 interface="dk.sdu.mmmi.cbse.common.services.IEntityCollisionDetectionService"
+						 name="IEntityCollisionDetectionService" policy="dynamic" unbind="removeEntityCollisionDetectionService"/>
 
 	<reference bind="addEntityProcessingService" cardinality="0..n"
 						 interface="dk.sdu.mmmi.cbse.common.services.IEntityProcessingService"

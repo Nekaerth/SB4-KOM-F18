@@ -4,12 +4,12 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
-import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IEntityCollisionDetectionService;
 
-public class CollisionDetectionControlSystem implements IPostEntityProcessingService {
+public class CollisionDetectionControlSystem implements IEntityCollisionDetectionService {
 
 	@Override
-	public void postProcess(GameData gameData, World world) {
+	public void collisionDetection(GameData gameData, World world) {
 		for (Entity entity : world.getEntities()) {
 			HitboxPart hitbox = entity.getPart(HitboxPart.class);
 			if (hitbox == null) {

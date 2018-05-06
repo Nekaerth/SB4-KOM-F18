@@ -7,14 +7,14 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PointShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.commonasteroid.data.Asteroid;
 import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
 import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.OwnershipPart;
 import dk.sdu.mmmi.cbse.commonenemy.data.Enemy;
 import dk.sdu.mmmi.cbse.commonplayer.data.Player;
+import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
-public class BulletControlSystem implements IEntityProcessingService, IPostPostEntityProcessingService {
+public class BulletControlSystem implements IEntityProcessingService, IPostEntityProcessingService {
 
 	private float bulletSpeed = 150;
 
@@ -56,7 +56,7 @@ public class BulletControlSystem implements IEntityProcessingService, IPostPostE
 	}
 
 	@Override
-	public void postPostProcess(GameData gameData, World world) {
+	public void postProcess(GameData gameData, World world) {
 		for (Entity asteroid : world.getEntities(Bullet.class)) {
 			handleCollision(world, asteroid);
 		}

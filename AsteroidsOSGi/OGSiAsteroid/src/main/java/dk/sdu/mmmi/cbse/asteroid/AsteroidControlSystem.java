@@ -7,7 +7,6 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.HitboxPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.commonasteroid.data.Asteroid;
 import dk.sdu.mmmi.cbse.commonbullet.data.Bullet;
 import dk.sdu.mmmi.cbse.commonbullet.data.entityparts.OwnershipPart;
@@ -16,8 +15,9 @@ import dk.sdu.mmmi.cbse.commonspawner.services.ISpawningService;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 import java.util.Random;
+import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
-public class AsteroidControlSystem implements ISpawningService<Asteroid>, IEntityProcessingService, IPostPostEntityProcessingService {
+public class AsteroidControlSystem implements ISpawningService<Asteroid>, IEntityProcessingService, IPostEntityProcessingService {
 
 	private Random random = new Random();
 
@@ -99,7 +99,7 @@ public class AsteroidControlSystem implements ISpawningService<Asteroid>, IEntit
 	}
 
 	@Override
-	public void postPostProcess(GameData gameData, World world) {
+	public void postProcess(GameData gameData, World world) {
 		for (Entity asteroid : world.getEntities(Asteroid.class)) {
 			handleCollision(world, asteroid);
 		}

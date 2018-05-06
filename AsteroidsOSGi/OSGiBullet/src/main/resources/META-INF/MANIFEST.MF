@@ -1,3 +1,3 @@
 Bundle-SymbolicName: OSGiBullet
 Bundle-ActivationPolicy: lazy
-Service-Component: META-INF/entityprocessor.xml, META-INF/postpostentityprocessor.xml, META-INF/bulletservice.xml
+Service-Component: META-INF/entityprocessor.xml, META-INF/postentityprocessor.xml, META-INF/bulletservice.xml

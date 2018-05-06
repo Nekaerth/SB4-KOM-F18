@@ -10,8 +10,8 @@ import dk.sdu.mmmi.cbse.common.data.World;
  *
  * @author Lasse
  */
-public interface IPostPostEntityProcessingService {
+public interface IPostEntityProcessingService {
 
-	void postPostProcess(GameData gameData, World world);
+	void postProcess(GameData gameData, World world);
 
 }

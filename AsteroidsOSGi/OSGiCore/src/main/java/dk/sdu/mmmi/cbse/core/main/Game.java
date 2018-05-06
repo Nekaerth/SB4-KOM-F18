@@ -18,10 +18,10 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.PolygonShapePart;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IEntityCollisionDetectionService;
-import dk.sdu.mmmi.cbse.common.services.IPostPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.core.managers.GameInputProcessor;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
 public class Game implements ApplicationListener {
 
@@ -33,7 +33,7 @@ public class Game implements ApplicationListener {
 	private static List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
 	private static List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
 	private static List<IEntityCollisionDetectionService> entityCollisionDetectorList = new CopyOnWriteArrayList<>();
-	private static List<IPostPostEntityProcessingService> postPostEntityProcessorList = new CopyOnWriteArrayList<>();
+	private static List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
 
 	public Game() {
 		init();
@@ -81,21 +81,16 @@ public class Game implements ApplicationListener {
 
 	private void update() {
 		//Does all all the proccessing of entities in correct order
-		//System.out.println("gamePlugin: " + gamePluginList.size());
-		//System.out.println("process: " + entityProcessorList.size());
-		//System.out.println("postProcess: " + postEntityProcessorList.size());
-		//System.out.println("postPostProcess: " + postPostEntityProcessorList.size());
-		//System.out.println("");
 		for (IEntityProcessingService entityProcessorService : entityProcessorList) {
 			entityProcessorService.process(gameData, world);
 		}
 
-		for (IEntityCollisionDetectionService postEntityProcessorService : entityCollisionDetectorList) {
-			postEntityProcessorService.collisionDetection(gameData, world);
+		for (IEntityCollisionDetectionService entityCollisionDetectionService : entityCollisionDetectorList) {
+			entityCollisionDetectionService.collisionDetection(gameData, world);
 		}
 
-		for (IPostPostEntityProcessingService postPostEntityProcessorService : postPostEntityProcessorList) {
-			postPostEntityProcessorService.postPostProcess(gameData, world);
+		for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
+			postEntityProcessorService.postProcess(gameData, world);
 		}
 	}
 
@@ -196,12 +191,12 @@ public class Game implements ApplicationListener {
 		entityCollisionDetectorList.remove(ecd);
 	}
 
-	public void addPostPostEntityProcessingService(IPostPostEntityProcessingService peps) {
-		postPostEntityProcessorList.add(peps);
+	public void addPostEntityProcessingService(IPostEntityProcessingService peps) {
+		postEntityProcessorList.add(peps);
 	}
 
-	public void removePostPostEntityProcessingService(IPostPostEntityProcessingService peps) {
-		postPostEntityProcessorList.remove(peps);
+	public void removePostEntityProcessingService(IPostEntityProcessingService peps) {
+		postEntityProcessorList.remove(peps);
 	}
 
 	public void addGamePluginService(IGamePluginService plugin) {

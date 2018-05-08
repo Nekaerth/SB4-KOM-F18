@@ -33,7 +33,6 @@ public class PlayerControlSystem implements IEntityProcessingService, IPostEntit
 
 	@Override
 	public void process(GameData gameData, World world) {
-		//This is Spring Player Module
 
 		for (Entity player : world.getEntities(Player.class)) {
 			//Updates player position based on keys down

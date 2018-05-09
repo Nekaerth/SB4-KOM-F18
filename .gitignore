@@ -11,7 +11,6 @@
 /NBRuntimeExample/application/target/
 /NBRuntimeExample/branding/target/
 /AsteroidsServiceLoader/CollisionDetection/target/
-/AsteroidsServiceLoader/CommonEntity/target/
 /AsteroidsServiceLoader/Spawner/target/
 /AsteroidsServiceLoader/CommonSpawner/target/
 /AsteroidsServiceLoader/CommonPlayer/target/
@@ -26,7 +25,6 @@
 /AsteroidsNetBeans/application/target/
 /AsteroidsNetBeans/Core/target/
 /AsteroidsNetBeans/Common/target/
-/AsteroidsNetBeans/TestModule/target/
 /AsteroidsNetBeans/SilentUpdate/target/
 /OSGiAgeCalculator/branding/target/
 /OSGiAgeCalculator/AgeCalculatorAPI/target/
@@ -58,3 +56,17 @@
 /AsteroidsOSGi/OGSiAsteroid/target/
 /AsteroidsOSGi/OSGiBullet/target/
 /AsteroidsOSGi/OSGiCollisionDetection/target/
+/AsteroidsNetBeansSpring/SilentUpdate/target/
+/AsteroidsNetBeansSpring/Common/target/
+/AsteroidsNetBeansSpring/CommonPlayer/target/
+/AsteroidsNetBeansSpring/CommonEnemy/target/
+/AsteroidsNetBeansSpring/CommonAsteroid/target/
+/AsteroidsNetBeansSpring/CommonBullet/target/
+/AsteroidsNetBeansSpring/CommonSpawner/target/
+/AsteroidsNetBeansSpring/branding/target/
+/AsteroidsNetBeansSpring/Player/target/
+/AsteroidsNetBeansSpring/Enemy/target/
+/AsteroidsNetBeansSpring/Asteroid/target/
+/AsteroidsNetBeansSpring/Bullet/target/
+/AsteroidsNetBeansSpring/Spawner/target/
+/AsteroidsNetBeansSpring/CollisionDetection/target/

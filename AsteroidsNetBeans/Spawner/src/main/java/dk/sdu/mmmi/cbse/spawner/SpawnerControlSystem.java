@@ -11,6 +11,8 @@ import dk.sdu.mmmi.cbse.commonplayer.data.Player;
 import dk.sdu.mmmi.cbse.commonspawner.services.ISpawningService;
 import java.util.Collection;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
@@ -39,6 +41,11 @@ public class SpawnerControlSystem implements IEntityProcessingService, IGamePlug
 
 	@Override
 	public void start(GameData gameData, World world) {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(SpawnerControlSystem.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		//Should spawn the initial entities
 		ISpawningService<Player> playerSpawner = getSpawningService(Player.class);
 		if (playerSpawner != null) {
